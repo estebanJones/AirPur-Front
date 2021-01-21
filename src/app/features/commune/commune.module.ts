@@ -14,8 +14,7 @@ import { CommuneRoutingModule } from './commune-routing.module';
       CommuneRoutingModule     
     ],
     exports :[
-  
-  
+
     ],
   })
 export class CommuneModule{

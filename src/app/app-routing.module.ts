@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: 'commune',
     loadChildren: () => {
-      return import('/features/commune/commune.module').then(res => res.CommuneModule)
+      return import('./features/commune/commune.module').then(res => res.CommuneModule)
     },
   }
 ];
