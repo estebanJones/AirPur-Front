@@ -10,11 +10,14 @@ import { MenuService } from './services/menu.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommuneComponent } from './features/commune/commune/commune.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthComponent
+    AuthComponent,
+    CommuneComponent
   ],
   imports: [
     BrowserModule,
