@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Utilisateur } from '../auth/auth.domain';
+import { Utilisateur } from '../features/auth/auth.domain';
 
 @Injectable({
   providedIn: 'root'

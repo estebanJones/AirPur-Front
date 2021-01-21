@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthComponent } from './auth/auth/auth.component';
+import { AuthComponent } from './features/auth/auth.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/connexion', pathMatch: 'full'},
