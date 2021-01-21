@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuService } from 'src/app/services/menu.service';
-import { Utilisateur } from './auth.domain';
-import { AuthService } from './auth.service';
+import { Utilisateur } from '../core/auth.domain';
+import { AuthService } from '../core/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -20,23 +20,20 @@ export class AuthComponent implements OnInit {
   }
 
   connecter() {
+    // RAJOUTER LES CHECKER SUR LES PROPS ANGULAR MATERIEL
     this.authSrv.connecter(this.utilisateur.email, this.utilisateur.motDePasse)
       .subscribe(
-       
         // en cas de succès, redirection vers la page /d'acceuil
        col => {
-
-          let roleUtilisateur = this.getRoles(col);
-
-          localStorage.setItem("idUtilisateur", col.id.toString());
-          localStorage.setItem("roleUtilisateur", roleUtilisateur);
-         
-         // this.router.navigate([`/${roleUtilisateur}/accueil`]);
              
       },
         // en cas d'erreur, affichage d'un message d'erreur
         err => this.err = true
       );
+      this.authSrv.utilisateurConnecteObs.subscribe(
+        success => this.router.navigate(['map']),
+        echec => console.log(echec)
+      )
   }
 
   getRoles(utilisateur: Utilisateur) : string {

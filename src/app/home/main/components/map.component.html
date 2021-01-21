@@ -1,0 +1,34 @@
+<!-- CARTE -->
+
+<div class="container">
+        <div class="row">
+                <div class="col-8">
+                        <div class="container">
+                        <!-- FAIRE APPEL API -->
+                        <agm-map style="height: 50%" [latitude]="latitude" [longitude]="longitude"></agm-map>
+                        </div>
+                </div>
+                <div class="col-4">
+                        <div class="container">
+                                <button class="btn btn-primary" [routerLink]="['details']">Details</button>
+                                <button mat-raised-button color="primary" [routerLink]="['create']" *ngIf="connected">Create</button>
+                                <button mat-raised-button color="accent" [routerLink]="['listeReleve']" *ngIf="connected">Liste</button>
+                                <div class="row">
+                                        <router-outlet></router-outlet>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</div>
+<!-- --------------------------------------------------------------------------------------------------------- -->
+
+<!-- CREER DES BOUTONS LIES AU ROUTER OUTLET -->
+
+<!-- --------------------------------------------------------------------------------------------------------- -->
+
+
+<!-- ROUTER GRACE A DES BOUTONS SUR 
+        DETAIL 
+        LISTE 
+        CREATE -->
+

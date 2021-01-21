@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import { of, BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import { Utilisateur } from './auth.domain';
 
@@ -36,6 +36,7 @@ export class AuthService {
   get utilisateurConnecteObs(): Observable<Utilisateur> {
     return this.utilisateurConnecteSub.asObservable();
   }
+  
 
   /**
    * Service permettant de vérifier si un collegue est authentifié.
@@ -43,16 +44,26 @@ export class AuthService {
    * Une requête HTTP est déclenchée pour récupérer le collègue connecté s'il n'est pas en cache.
    *
    */
-//   verifierAuthentification(): Observable<Utilisateur> {
-//     return this.collegueConnecteSub.getValue().estAnonyme() ?
-//             this.http.get<Utilisateur>(`${environment.baseUrl}${environment.apiAuthMe}`, {withCredentials: true})
-//                   .pipe(
-                    
-//                     map(colServeur => new Utilisateur(colServeur)),
-//                     tap(col => this.collegueConnecteSub.next(col)),
-//                     catchError(err => of(UTILISATEUR_ANONYME))
-//                   ) :     of(this.collegueConnecteSub.getValue());
-//   }
+  verifierAuthentification(): Observable<Utilisateur> {
+    // SI IL EST ANONYME
+    if(this.utilisateurConnecteSub.getValue().estAnonyme()) {
+      const utilisateur = this.getUserFromCache();
+      // SI IL EST EN CACHE
+        if(!!utilisateur) {
+          return of(utilisateur);
+          // PAS DANS LE CACHE
+        } else {
+          return this.http.get<Utilisateur>(`http://localhost:8080/me`, {withCredentials: true})
+                  .pipe(
+                    map(colServeur => new Utilisateur(colServeur)),
+                    tap(col => this.utilisateurConnecteSub.next(col)),
+                    catchError(err => of(UTILISATEUR_ANONYME)));
+        }
+    } else {
+      // SI IL N EST PAS ANONYME ON RENVOIE LUTILISATEUR EN CACHE
+      of(this.utilisateurConnecteSub.getValue());
+    }
+  }
 
   /**
    * Connexion de l'utilisateur.
@@ -72,10 +83,21 @@ export class AuthService {
       new HttpParams().set('username', email).set('password', mdp), config)
       .pipe(
         map(utilisateurServeur => new Utilisateur(utilisateurServeur)),
-        tap(u => this.utilisateurConnecteSub.next(u) )
+        tap(u => {
+          this.persistUser(u);
+          this.utilisateurConnecteSub.next(u);
+        })
+        
       );
   }
 
+  persistUser(utilisateur : Utilisateur) {
+       localStorage.setItem("utilisateur", JSON.stringify(utilisateur));
+  }
+
+  getUserFromCache() : Utilisateur {
+    return JSON.parse(localStorage.getItem("utilisateur")) as Utilisateur;
+  }
   /**
    * Déconnexion de l'utilisateur.
    *
@@ -97,17 +119,12 @@ export class AuthService {
       .pipe(
         tap(user => this.utilisateurConnecteSub.next(UTILISATEUR_ANONYME))
       );
+
   }
 
 
   isAuthenticated() {
-
-    if ( localStorage.getItem("idUtilisateur") != null ){
-      return true;
-    } else {
-      return false
-    }
-    
-}
+    return localStorage.getItem("idUtilisateur") != null ? true: false;
+  }
 
 }

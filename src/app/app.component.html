@@ -1,1 +1,51 @@
+<div class="container" *ngIf="connected">
+  <div class="row row-cols-5">
+    <div class="col">
+      <button mat-button>Accueil</button>
+    </div>
+
+    <div class="col">
+      <button mat-button>Forum</button>
+    </div>
+    <div class="col">
+      <button mat-button [matMenuTriggerFor]="beforeMenu">Profil</button>
+      <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <button mat-menu-item>Mon compte</button>
+        <button mat-menu-item>Mes relevès</button>
+        <button mat-menu-item>Se déconnecter</button>
+      </mat-menu>
+    </div>
+
+    <div class="col">
+      <button mat-button [matMenuTriggerFor]="afterMenu">Notification</button>
+      <mat-menu #afterMenu="matMenu" xPosition="after">
+        <button mat-menu-item>Notif 1</button>
+        <button mat-menu-item>Notif 2</button>
+      </mat-menu>
+    </div>
+    <div class="col">
+      <button (click)="onLogoutClick()" class="logout-btn" mat-button>Se deconnecter <mat-icon>exit_to_app</mat-icon></button>
+     
+      <span class="logout-label"></span>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="!connected">
+  <div class="row row-cols-4">
+    <div class="col">
+      <button mat-button>Accueil</button>
+    </div>
+
+    <div class="col">
+      <button mat-button>Inscription</button>
+    </div>
+    <div class="col">
+      <div class="col">
+        <button [routerLink]="['connexion']" mat-button>Connection</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <router-outlet></router-outlet>
