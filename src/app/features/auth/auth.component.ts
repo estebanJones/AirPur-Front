@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuService } from 'src/app/services/menu.service';
-import { Utilisateur } from '../auth.domain';
+import { Utilisateur } from './auth.domain';
 import { AuthService } from './auth.service';
 
 @Component({

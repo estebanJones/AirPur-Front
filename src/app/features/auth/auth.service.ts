@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { of, BehaviorSubject, Observable } from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
-import { Utilisateur } from '../auth.domain';
+import { Utilisateur } from './auth.domain';
 
 /**
  * Collègue anonyme.
