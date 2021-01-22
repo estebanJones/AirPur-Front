@@ -11,6 +11,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from './shared/shared.module';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 
 
@@ -26,7 +27,8 @@ import { SharedModule } from './shared/shared.module';
     FormsModule,
     BrowserAnimationsModule,
     NgbModule,
-    SharedModule
+    SharedModule,
+    GoogleMapsModule
   ],
   providers: [
     AuthService,

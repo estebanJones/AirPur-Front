@@ -6,7 +6,8 @@ import { ListeRelevesComponent } from "./components/listeReleve/listeReleve.comp
 
 import { MapRoutingModule } from "./map-routing.module"
 import { MapComponent } from './components/map.component';
-import { AgmCoreModule } from '@agm/core';
+import { GoogleMapsModule } from '@angular/google-maps';
+// import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
     declarations: [
@@ -18,9 +19,10 @@ import { AgmCoreModule } from '@agm/core';
     imports: [
       CommonModule,
       MapRoutingModule,
-      AgmCoreModule.forRoot({
-        apiKey: "AIzaSyChLcyRKnpxOQ7e-WH1ukCd48vfnRizAJU"
-      })
+      GoogleMapsModule
+      // AgmCoreModule.forRoot({
+      //   apiKey: "AIzaSyChLcyRKnpxOQ7e-WH1ukCd48vfnRizAJU"
+      // })
     ],
     exports : [
     ]
