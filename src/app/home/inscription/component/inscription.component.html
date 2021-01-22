@@ -1,0 +1,28 @@
+<div class="login-container card">
+    <h2>Inscription</h2>
+    <form>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" />
+            <div class="invalid-feedback">
+                Une adresse email valide est obligatoire.
+            </div>
+        </div>
+<!--         
+        <div class="form-group">
+            <label for="exampleInputPassword1">Ancien mot de passe</label>
+            <input type="password" class="form-control" placeholder="Password" [ngClass]="{'is-invalid' : loginForm.controls.password.hasError('required')}" [formControl]="loginForm.controls.password" />
+            <div class="invalid-feedback">
+                Le mot de passe est obligatoire.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Departement</label>
+            <input type="password" class="form-control" placeholder="Nom département" [ngClass]="{'is-invalid' : loginForm.controls.password.hasError('required')}" [formControl]="loginForm.controls.password" />
+            <div class="invalid-feedback">
+                Le nom du département est obligatoire.
+            </div>
+        </div> -->
+        <button class="btn btn-primary" (click)="submitLogin()">S'inscrire</button>
+    </form>
+</div>
