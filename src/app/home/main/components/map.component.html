@@ -5,7 +5,16 @@
                 <div class="col-8">
                         <div class="container">
                         <!-- FAIRE APPEL API -->
-                        <google-map></google-map>
+                        <google-map height="1000" width="1000" (mapClick)="click($event)" [center]="center">
+                                <map-marker
+                                        *ngFor="let marker of markers"
+                                        [position]="marker.position"
+                                        [label]="marker.label"
+                                        [title]="marker.title"
+                                        [options]="marker.options"
+                                >
+                                </map-marker>
+                        </google-map>
                         </div>
                 </div>
                 <div class="col-4">
