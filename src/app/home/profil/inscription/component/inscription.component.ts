@@ -50,7 +50,7 @@ export class InscriptionComponent implements OnInit{
         const nom = this.registerForm.get('nom').value;
         const prenom = this.registerForm.get('prenom').value;
         const username = this.registerForm.get('username').value;
-        const email = this.registerForm.get('login').value;
+        const email = this.registerForm.get('email').value;
         const password = this.registerForm.get('password').value;
         console.log(nom, prenom, username, email, password);
         this.userService.register(nom, prenom, username, email, password)
