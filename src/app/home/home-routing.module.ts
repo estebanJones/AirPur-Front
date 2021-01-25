@@ -6,6 +6,8 @@ import { ListeRelevesComponent } from './main/components/listeReleve/listeReleve
 import { MapComponent } from './main/components/map.component';
 import { CreateComponent } from './main/components/create/create.component';
 
+
+
 const routes : Routes = [
   {
     path: '',
@@ -27,6 +29,7 @@ const routes : Routes = [
         path : '**',
         redirectTo : 'map'
       }
+      
     ]
   }
 ];
