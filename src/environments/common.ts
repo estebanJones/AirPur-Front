@@ -3,7 +3,7 @@
  *
  */
 export const config = {
-    getAllStations : 'station/all'
-  
+    getAllStations : 'station/all',
+    getStation : 'station'
   
   };

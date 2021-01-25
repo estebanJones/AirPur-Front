@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MapInfoWindow, MapMarker } from '@angular/google-maps';
+import { Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { AuthService } from '../../profil/auth/core/auth.service';
 import { MapService } from '../core/map.service';
@@ -11,16 +13,17 @@ import { Station } from "../core/station.model";
   })
 
 export class MapComponent implements OnInit {
+    @ViewChild(MapInfoWindow, { static: false }) infoWindow: MapInfoWindow;
+
+
     markers : any[] = [];
     stations : Station[] = [];
     connected : boolean = false;
-    latitude = 51.678418;
-    longitude = 7.809007;
     center: google.maps.LatLngLiteral;
 
 
 
-    constructor(private authServ : AuthService, private mapService: MapService) {
+    constructor(private authServ : AuthService, private mapService: MapService , private router : Router) {
         this.authServ.utilisateurConnecteObs.subscribe(
             utilisateurConnected => {
                 if(!utilisateurConnected.estAnonyme()) {
@@ -43,10 +46,12 @@ export class MapComponent implements OnInit {
                             lng: station.longitude,
                         },
                         label: {
-                            color: 'red',
-                            text: `Nom station : ${station.nom} ${this.markers.length + 1}`,
+                            color: 'white',
+                            idStation: station.id,
+                            nomStation: `${station.nom}`,
+                            
                         },
-                        title: 'Station pollution ' + (this.markers.length + 1),
+                        title: 'Station pollution',
                         options: { animation: google.maps.Animation.BOUNCE },
                     })
                 })
@@ -68,9 +73,24 @@ export class MapComponent implements OnInit {
             stationServeur.forEach(station => {
                 this.stations.push(new Station(station));
             })
-            console.log("ici ", this.stations);
             return this.stations;
         }),
     )
+  }
+
+
+  clicked : boolean = false;
+
+  clickMarker(marker: MapMarker, content) {
+      this.mapService.getPolluantsByStation(marker.label['idStation']).subscribe(
+          releves => {
+              this.clicked = true;
+              this.mapService.emit(releves);
+        },
+          error => console.log(error)
+      );
+
+      this.router.navigate(['map/listeReleve']);
+    //this.infoWindow.open(marker);
   }
 }

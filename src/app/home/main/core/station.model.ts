@@ -1,6 +1,7 @@
 import { Polluant } from "./polluant.model";
 
 export class Station {
+   public id: number;
    public nom: string;
    public latitude: number;
    public longitude: number;
@@ -10,4 +11,6 @@ export class Station {
    constructor(params: any) {
       Object.assign(this, params);
     }
+
+    
 }
