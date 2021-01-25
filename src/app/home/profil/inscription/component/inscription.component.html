@@ -3,7 +3,7 @@
     <form>
         <div class="form-group">
             <label for="exampleInputNom1">Nom </label>
-            <input type="text" class="form-control" placeholder="Tex"
+            <input type="text" class="form-control" placeholder="Tex" [ngClass]="{'is-invalid' : registerForm.controls.nom.hasError('required')}"
                 [formControl]="registerForm.controls.nom">
             <div class="invalid-feedback">
                 Un nom valide est obligatoire.
@@ -11,7 +11,7 @@
         </div>
         <div class="form-group">
             <label for="exampleInputPrenom1">Prenom </label>
-            <input type="text" class="form-control" placeholder="Jordan"
+            <input type="text" class="form-control" placeholder="Jordan" [ngClass]="{'is-invalid' : registerForm.controls.prenom.hasError('required')}"
                 [formControl]="registerForm.controls.prenom">
             <div class="invalid-feedback">
                 Un prenom valide est obligatoire.
@@ -19,7 +19,7 @@
         </div>
         <div class="form-group">
                 <label for="exampleInputUsername1">Username </label>
-                <input type="text" class="form-control" placeholder="Itachi"
+                <input type="text" class="form-control" placeholder="Itachi" [ngClass]="{'is-invalid' : registerForm.controls.username.hasError('required')}"
                     [formControl]="registerForm.controls.username">
                 <div class="invalid-feedback">
                     Un pseudo valide est obligatoire.
