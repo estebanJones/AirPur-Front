@@ -1,37 +1,22 @@
 import { NgModule } from '@angular/core';
 
 import { Routes, RouterModule } from '@angular/router';
-import { DetailsComponent } from './main/components/details/details.component';
-import { ListeRelevesComponent } from './main/components/listeReleve/listeReleve.component';
-import { MapComponent } from './main/components/map.component';
-import { CreateComponent } from './main/components/create/create.component';
+import { NotificationComponent } from './notification/components/notification.componenet';
 
 
+const routes : Routes = [ 
+    {
+      path: 'map',
+      loadChildren: () => import('./main/map.module').then(res => res.MapModule)
+    },
+    {
+      path: 'profile',
+      loadChildren: () => import('./profil/profile.module').then(res => res.ProfileModule)
+    },
+    { path: 'notifications', component: NotificationComponent},
 
-const routes : Routes = [
-  {
-    path: '',
-    component: MapComponent,
-    children: [
-      {
-        path : 'listeReleve',
-        component : ListeRelevesComponent
-      },
-      {
-        path : 'details',
-        component : DetailsComponent
-      },
-      {
-        path : 'create',
-        component : CreateComponent
-      },
-      {
-        path : '**',
-        redirectTo : 'map'
-      }
-      
-    ]
-  }
+    
+  
 ];
 
 

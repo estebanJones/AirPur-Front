@@ -12,13 +12,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from './shared/shared.module';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AuthComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +28,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     NgbModule,
     SharedModule,
-    GoogleMapsModule
+    FormsModule
   ],
   providers: [
     AuthService,
