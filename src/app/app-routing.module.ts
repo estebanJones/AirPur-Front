@@ -8,7 +8,7 @@ import { ConfidentialiteComponent } from './home/legal/confidentialite/confident
 import { CookiesComponent } from './home/legal/cookies/cookies.component';
 import { AuthComponent } from './home/profil/auth/components/auth.component';
 
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+
 
 const routes: Routes = [
 
@@ -18,18 +18,18 @@ const routes: Routes = [
   },
   
   {
-    path: 'profile',
+    path: 'profil',
     loadChildren: () => import('./home/profil/profile.module').then(res => res.ProfileModule)
+  },
+
+  { path: 'legal', 
+    loadChildren: () => import('./home/legal/legal.module').then(res=> res.LegalModule)
   },
   
   { path: 'notifications', component: NotificationComponent },
   { path: '**', redirectTo: 'map' },
   { path: '', redirectTo: 'map', pathMatch: 'full'},
-  
-  //{ path: 'connexion', //component: AuthComponent},
-   // loadChildren: () => import('./home/profil/auth/components/auth.component')
-  
-  
+    
   //{ path: 'conditionsGen', component: ConditionsGenComponent},
   //{ path: 'confidentialites', component: ConfidentialiteComponent},
   //{ path: 'aPropos', component: AProposComponent},
