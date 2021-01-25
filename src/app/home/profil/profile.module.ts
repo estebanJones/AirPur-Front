@@ -13,11 +13,9 @@ import { ProfileRoutingModule } from './profile-routing.module';
       InscriptionComponent,
       CompteComponent,
       AuthComponent
-
     ],
     imports: [
       CommonModule,
-      BrowserModule,
       SharedModule,
       ProfileRoutingModule
     ],

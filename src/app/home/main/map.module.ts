@@ -21,9 +21,7 @@ import { BrowserModule } from '@angular/platform-browser';
       CommonModule,
       MapRoutingModule,
       GoogleMapsModule,
-      SharedModule,
-      BrowserModule
-
+      SharedModule
     ],
     exports : [
     ]

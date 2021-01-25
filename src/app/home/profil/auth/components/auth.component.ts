@@ -25,7 +25,7 @@ export class AuthComponent implements OnInit {
       .subscribe(
         // en cas de succès, redirection vers la page /d'acceuil
        col => {
-             
+
       },
         // en cas d'erreur, affichage d'un message d'erreur
         err => this.err = true

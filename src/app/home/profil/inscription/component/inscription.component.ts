@@ -11,17 +11,17 @@ import { ValueConverter } from '@angular/compiler/src/render3/view/template';
     styleUrls: ['./inscription.component.css']
   })
 export class InscriptionComponent implements OnInit{
- 
+
     static EMAIL_REGX = '^[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*([-]{1})?@[a-z0-9]+([\.|-]{1}[a-z0-9]+)*[\.]{1}[a-z]{2,6}$';
 
     registerForm: FormGroup;
-   
+
     constructor(private formBuilder: FormBuilder,
-      private router: Router, 
+      private router: Router,
       private userService : UserService ) {
-          
+
      }
-      
+
     //  ngOnInit(){
     //   this.registerForm = this.formBuilder.group({
     //     email: [''],
@@ -29,7 +29,7 @@ export class InscriptionComponent implements OnInit{
     //     departement: ['']
     //   });
     // }
-  
+
     ngOnInit() {
       this.registerForm = this.formBuilder.group({
         nom: ['', Validators.required],
@@ -44,7 +44,7 @@ export class InscriptionComponent implements OnInit{
         password: ['', Validators.required],
       })
     }
-  
+
     submitRegister() {
       if (this.registerForm.valid) {
         const nom = this.registerForm.get('nom').value;
@@ -56,14 +56,14 @@ export class InscriptionComponent implements OnInit{
         this.userService.register(nom, prenom, username, email, password)
           .subscribe(result => {
             console.log(result);
-            this.router.navigate(['connexion']);
+            this.router.navigate(['profile/connexion']);
            }, err => {
             console.log(err);
             alert('Email existe déja')
            })
       }
-  
+
     }
-  
+
 
 }

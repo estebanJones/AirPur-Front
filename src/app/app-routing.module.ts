@@ -1,21 +1,26 @@
+import { NotificationComponent } from './home/notification/components/notification.componenet';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, PreloadAllModules, NoPreloading } from '@angular/router';
-import { MapComponent } from './home/main/components/map.component';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 const routes: Routes = [
-  {path : '**', redirectTo : 'home'},
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then(res => res.HomeModule)
-  }
+    path: 'map',
+    loadChildren: () => import('./home/main/map.module').then(res => res.MapModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./home/profil/profile.module').then(res => res.ProfileModule)
+  },
+  { path: 'notifications', component: NotificationComponent },
+  { path: '**', redirectTo: 'map' }
 
 ];
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{
+  imports: [RouterModule.forRoot(routes, {
     preloadingStrategy: PreloadAllModules,
   })],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

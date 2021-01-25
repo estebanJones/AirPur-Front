@@ -1,52 +1,52 @@
 <div class="container" *ngIf="connected">
-  <div class="row row-cols-5">
-    <div class="col">
-      <button [routerLink]="['map']" mat-button>Accueil</button>
-    </div>
+    <div class="row row-cols-5">
+        <div class="col">
+            <button [routerLink]="['/map']" mat-button>Accueil</button>
+        </div>
 
-    <div class="col">
-      <button mat-button>Forum</button>
-    </div>
-    <div class="col">
-      <button mat-button [matMenuTriggerFor]="beforeMenu">Profil</button>
-      <mat-menu #beforeMenu="matMenu" xPosition="before">
-        <button [routerLink]="['user_profile']" mat-menu-item>Mon compte</button>
-        <button [routerLink]="['releves']" mat-menu-item>Mes relevès</button>
+        <div class="col">
+            <button mat-button>Forum</button>
+        </div>
+        <div class="col">
+            <button mat-button [matMenuTriggerFor]="beforeMenu">Profil</button>
+            <mat-menu #beforeMenu="matMenu" xPosition="before">
+                <button [routerLink]="['/profile']" mat-menu-item>Mon compte</button>
+                <button [routerLink]="['/profile/releves']" mat-menu-item>Mes relevès</button>
 
-        <button mat-menu-item>Se déconnecter</button>
-      </mat-menu>
-    </div>
+                <button mat-menu-item>Se déconnecter</button>
+            </mat-menu>
+        </div>
 
-    <div class="col">
-      <button mat-button [routerLink]="['notifications']" [matMenuTriggerFor]="afterMenu">Notification</button>
-      <mat-menu #afterMenu="matMenu" xPosition="after">
-        <button mat-menu-item>Notif 1</button>
-        <button mat-menu-item>Notif 2</button>
-      </mat-menu>
+        <div class="col">
+            <button mat-button [routerLink]="['/notifications']" [matMenuTriggerFor]="afterMenu">Notification</button>
+            <mat-menu #afterMenu="matMenu" xPosition="after">
+                <button mat-menu-item>Notif 1</button>
+                <button mat-menu-item>Notif 2</button>
+            </mat-menu>
+        </div>
+        <div class="col">
+            <button (click)="onLogoutClick()" class="logout-btn" mat-button>Se deconnecter <mat-icon>exit_to_app</mat-icon></button>
+
+            <span class="logout-label"></span>
+        </div>
     </div>
-    <div class="col">
-      <button (click)="onLogoutClick()" class="logout-btn" mat-button>Se deconnecter <mat-icon>exit_to_app</mat-icon></button>
-      
-      <span class="logout-label"></span>
-    </div>
-  </div>
 </div>
 
 <div class="container" *ngIf="!connected">
-  <div class="row row-cols-4">
-    <div class="col">
-      <button mat-button>Accueil</button>
-    </div>
+    <div class="row row-cols-4">
+        <div class="col">
+            <button mat-button>Accueil</button>
+        </div>
 
-    <div class="col">
-      <button mat-button [routerLink]="['inscription']" >Inscription</button>
+        <div class="col">
+            <button mat-button [routerLink]="['/profile/inscription']">Inscription</button>
+        </div>
+        <div class="col">
+            <div class="col">
+                <button [routerLink]="['/profile/connexion']" mat-button>Connection</button>
+            </div>
+        </div>
     </div>
-    <div class="col">
-      <div class="col">
-        <button [routerLink]="['connexion']" mat-button>Connection</button>
-      </div>
-    </div>
-  </div>
 </div>
 
 <router-outlet></router-outlet>
