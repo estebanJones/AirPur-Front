@@ -23,7 +23,7 @@ export class CompteComponent implements OnInit{
 
     ngOnInit() {
       this.profilForm = this.formBuilder.group({
-        login: ['',
+        email: ['',
           Validators.compose([
             Validators.required,
             Validators.pattern(CompteComponent.EMAIL_REGX)
@@ -33,16 +33,14 @@ export class CompteComponent implements OnInit{
       })
     }
 
-    submitCompte() {
+    submitChange() {
 
       if (this.profilForm.valid) {
-        const email = this.profilForm.get('login').value;
+        const email = this.profilForm.get('email').value;
         const password = this.profilForm.get('password').value;
-
-        // POST api/v1/login
-        // TODO-2 : faire appel au service loginService.login()
+        const password2 = this.profilForm.get('password').value;
         console.log(email, password);
-        this.userService.login(email, password)
+        this.userService.update(email, password)
           .subscribe(result => {
             console.log(result);
             this.router.navigate(['profile/connexion']);

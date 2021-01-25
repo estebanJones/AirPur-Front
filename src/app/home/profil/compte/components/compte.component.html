@@ -1,38 +1,38 @@
 <div class="login-container card">
-        <h2>Mon compte</h2>
-        <form>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Adresse Email </label>
-                <input type="email" class="form-control" placeholder="tex@gmail.com"
-                    formControl="registerForm.controls.email">
-                <div class="invalid-feedback">
-                    Une adresse email valide est obligatoire.
-                </div>
+    <h2> Mon Compte</h2>
+    <form>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email </label>
+            <input type="email" class="form-control"
+                [ngClass]="{'is-invalid' : profilForm.controls.email.hasError('required') || profilForm.controls.email.hasError('pattern')}"
+                [formControl]="profilForm.controls.email">
+
+            <div class="invalid-feedback">
+                Une adresse email valide est obligatoire.
             </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Ancien mot de passe</label>
-                <input type="password" class="form-control" autocomplete="on"
-                    formControl="registerForm.controls.password" />
+        </div>
+        <!-- Trouver le mot de passe de l'utilisateur -->
+        <div class="form-group">
+            <label for="exampleInputPassword1">Mot de passe</label>
+            <input type="password" class="form-control" placeholder="Password"
+                [ngClass]="{'is-invalid' : profilForm.controls.password.hasError('required')}"
+                [formControl]="profilForm.controls.password" />
+
+            <div class="invalid-feedback">
+                Le mot de passe est obligatoire.
+            </div>
+        </div>
+        <!-- Update le mot de passe de l'utilisateur -->
+        <div class="form-group">
+                <label for="exampleInputPassword1">Mot de passe</label>
+                <input type="password" class="form-control" placeholder="Password"
+                    [ngClass]="{'is-invalid' : profilForm.controls.password.hasError('required')}"
+                    [formControl]="profilForm.controls.password" />
+    
                 <div class="invalid-feedback">
                     Le mot de passe est obligatoire.
                 </div>
             </div>
-            <div class="form-group">
-                    <label for="exampleInputPassword1">Nouveau mot de passe</label>
-                    <input type="password" class="form-control" autocomplete="on"
-                        formControl="registerForm.controls.password" />
-                    <div class="invalid-feedback">
-                        Le mot de passe est obligatoire.
-                    </div>
-                </div>
-                <div class="form-group">
-                        <label for="exampleInputPassword1">Confirmer le mot de passe</label>
-                        <input type="password" class="form-control" autocomplete="on"
-                            formControl="registerForm.controls.password" />
-                        <div class="invalid-feedback">
-                            Le mot de passe est obligatoire.
-                        </div>
-                    </div>
-            <button class="btn btn-primary" (click)="submitCompte()">Valider modification</button>
-        </form>
-    </div>
+        <button class="btn btn-primary" (click)="submitChange()">S'inscrire</button>
+    </form>
+</div>
