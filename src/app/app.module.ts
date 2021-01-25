@@ -11,6 +11,14 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from './shared/shared.module';
+
+//import { GoogleMapsModule } from '@angular/google-maps';
+//import { LegalModule } from './home/legal/legal.module';
+//import { ConditionsGenComponent } from './home/legal/conditions-gen/conditions-gen.component';
+//import { ConfidentialiteComponent } from './home/legal/confidentialite/confidentialite.component';
+//import { AProposComponent } from './home/legal/a-propos/a-propos.component';
+//import { CookiesComponent } from './home/legal/cookies/cookies.component';
+
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
@@ -18,6 +26,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
+   // AuthComponent,
+   // ConditionsGenComponent,
+   // ConfidentialiteComponent,
+   // AProposComponent,
+   // CookiesComponent
     NotificationComponent
   ],
   imports: [
@@ -29,6 +42,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     NgbModule,
     SharedModule,
+    GoogleMapsModule,
+    LegalModule
     FormsModule
   ],
   providers: [
