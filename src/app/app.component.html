@@ -1,7 +1,7 @@
 <div class="container" *ngIf="connected">
     <div class="row row-cols-5">
         <div class="col">
-            <button [routerLink]="['/map']" mat-button>Accueil</button>
+            <a [routerLink]="['map']" mat-button>Accueil</a>
         </div>
 
         <div class="col">
@@ -35,7 +35,7 @@
 <div class="container" *ngIf="!connected">
     <div class="row row-cols-4">
         <div class="col">
-            <button mat-button>Accueil</button>
+            <button mat-button [routerLink]="['map']">Accueil</button>
         </div>
 
         <div class="col">
