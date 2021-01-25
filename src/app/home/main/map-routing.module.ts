@@ -28,6 +28,10 @@ const routes : Routes = [
         redirectTo : 'listeReleve'
       }
     ]
+  },
+  {
+    path : '**',
+    redirectTo : ''
   }
 ];
 
