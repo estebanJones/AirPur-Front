@@ -4,6 +4,6 @@
  */
 export const config = {
     getAllStations : 'station/all',
-    getStation : 'station'
-  
+    getStation : 'station',
+    getMeteo : 'commune/meteo'
   };

@@ -14,7 +14,7 @@ import { Station } from "../core/station.model";
 
 export class MapComponent implements OnInit {
     @ViewChild(MapInfoWindow, { static: false }) infoWindow: MapInfoWindow;
-
+    initialCenterMap: google.maps.LatLngLiteral =  {lat: 43.6600980666535, lng:  3.035913988993468};
 
     markers : any[] = [];
     stations : Station[] = [];
@@ -48,8 +48,8 @@ export class MapComponent implements OnInit {
                         label: {
                             color: 'white',
                             idStation: station.id,
-                            nomStation: `${station.nom}`,
-                            
+                            idCommune: station.communeId,
+                            nomStation: `${station.nom}`           
                         },
                         title: 'Station pollution',
                         options: { animation: google.maps.Animation.BOUNCE },
@@ -82,15 +82,30 @@ export class MapComponent implements OnInit {
   clicked : boolean = false;
 
   clickMarker(marker: MapMarker, content) {
-      this.mapService.getPolluantsByStation(marker.label['idStation']).subscribe(
-          releves => {
-              this.clicked = true;
-              this.mapService.emit(releves);
-        },
-          error => console.log(error)
-      );
-
+      this.getPolluantAndEmit(marker);
+      this.getMeteoByCommuneAndEmit(marker);
       this.router.navigate(['map/listeReleve']);
     //this.infoWindow.open(marker);
+  }
+
+  getPolluantAndEmit(marker: MapMarker) {
+    this.mapService.getPolluantsByStation(marker.label['idStation']).subscribe(
+        releves => {
+            this.clicked = true;
+            this.mapService.emitPolluant(releves);
+      },
+        error => console.log(error)
+    );
+  }
+
+  getMeteoByCommuneAndEmit(marker: MapMarker) {
+    this.mapService.getMeteoByCommune(marker.label['idCommune']).subscribe(
+        meteoReleve => {
+            console.log(meteoReleve);
+            this.clicked = true;
+            this.mapService.emitMeteo(meteoReleve);
+      },
+        error => console.log(error)
+    );
   }
 }

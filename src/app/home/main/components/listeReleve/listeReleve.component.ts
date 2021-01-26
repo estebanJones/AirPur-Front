@@ -1,5 +1,7 @@
+import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { MapService } from '../../core/map.service';
+import { MeteoIndicateur } from '../../core/meteoindicateur.model';
 import { RelevePolluant } from '../../core/relevePolluant.model';
 
 
@@ -10,6 +12,7 @@ import { RelevePolluant } from '../../core/relevePolluant.model';
   })
 export class ListeRelevesComponent implements OnInit {
     relevesPolluants: RelevePolluant[] = [];
+    relevesMeteo: MeteoIndicateur;
     displayedColumns: string[] = ['nom', 'valeur', 'dateDebut', 'dateFin'];
     columnsToDisplay: string[] = this.displayedColumns.slice();
     
@@ -18,11 +21,23 @@ export class ListeRelevesComponent implements OnInit {
     }
 
     ngOnInit() {
-      this.mapService.onPolluant().subscribe(
-        relevesPolluants => this.relevesPolluants = relevesPolluants,
-        error => console.log("ntm ", error)
-      )
-      console.log("relevesPolluants ", this.relevesPolluants);
+      console.log("DEBUT INIT ", this.relevesPolluants.length)
+      this.subscribeToPolluant();
+      this.subscribeToMeteo();
+      console.log("FIN INIT")
     }
 
+    subscribeToPolluant() {
+      this.mapService.onPolluant().subscribe(
+        relevesPolluants => this.relevesPolluants = relevesPolluants,
+        error => console.log("erreur ", error)
+      )
+    }
+
+    subscribeToMeteo() {
+      this.mapService.onMeteo().subscribe(
+        relevesMeteo => this.relevesMeteo = new MeteoIndicateur(relevesMeteo),
+        error => console.log("erreur ", error)
+      )
+    }
 }
