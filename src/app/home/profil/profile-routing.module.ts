@@ -14,6 +14,7 @@ const routes : Routes = [
   { path: 'inscription', component: InscriptionComponent},
   { path: 'releves', component: RelevesComponent},
   { path: '**', redirectTo :''},
+  { path: 'moncompte', component: CompteComponent},
   
 ];
 
