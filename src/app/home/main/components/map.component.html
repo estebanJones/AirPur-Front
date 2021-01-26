@@ -3,9 +3,8 @@
 <div class="container-fluid">
         <div class="row">
                 <div class="col-7">
-                        <div class="container">
                         <!-- FAIRE APPEL API -->
-                        <google-map height="1000" width="1000" (mapClick)="click($event)" [center]="center">
+                        <google-map height="850" width="100%" (mapClick)="click($event)" [center]="center">
                                 <map-marker
                                         #marker
                                         *ngFor="let marker of markers"
@@ -17,17 +16,12 @@
                                 >
                                 </map-marker>
                         </google-map>
-                        </div>
                 </div>
-                <div class="col-4">
-                        <div class="container">
-                                <button class="btn btn-primary" [routerLink]="['details']">Details</button>
-                                <button mat-raised-button color="primary" [routerLink]="['create']" *ngIf="connected">Create</button>
-                                <!-- <button mat-raised-button color="accent"  [routerLink]="['listeReleve']" *ngIf="connected">Liste</button> -->
-                                <div class="row">
-                                        <router-outlet></router-outlet>
-                                </div>
-                        </div>
+                <div class="col-5">
+                        <!-- <button class="btn btn-primary" [routerLink]="['details']">Details</button>
+                        <button mat-raised-button color="primary" [routerLink]="['create']" *ngIf="connected">Create</button> -->
+                        <!-- <button mat-raised-button color="accent"  [routerLink]="['listeReleve']" *ngIf="connected">Liste</button> -->
+                        <router-outlet></router-outlet>
                 </div>
         </div>
 </div>

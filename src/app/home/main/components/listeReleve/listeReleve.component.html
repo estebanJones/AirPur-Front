@@ -1,5 +1,5 @@
-<div class="container" *ngIf="relevesPolluants.length != 0">
-  <mat-card class="example-card">
+<ng-container *ngIf="relevesPolluants.length != 0">
+  <mat-card class="example-card" style="height:100%">
     <mat-card-header>
       <mat-card-title
         >Nom de la station: {{ relevesPolluants[0].nomStation }}</mat-card-title
@@ -20,7 +20,7 @@
       <button mat-button>SHARE</button>
     </mat-card-actions>
   </mat-card>
-</div>
+</ng-container>
 <!-- <table mat-table [dataSource]="relevesPolluants" class="mat-elevation-z8" *ngIf="relevesPolluants.length != 0">
     <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
       <th mat-header-cell *matHeaderCellDef> {{column}} </th>
