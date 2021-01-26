@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { Routes, RouterModule } from '@angular/router';
 import { CreateComponent } from './components/create/create.component';
-import { DetailsComponent } from './components/details/details.component';
+import { HistoriqueComponent } from './components/historique/historique.component';
 import { ListeRelevesComponent } from './components/listeReleve/listeReleve.component';
 import { MapComponent } from './components/map.component';
 
@@ -16,8 +16,8 @@ const routes : Routes = [
         component : ListeRelevesComponent
       },
       {
-        path : 'details',
-        component : DetailsComponent
+        path : 'historique',
+        component : HistoriqueComponent
       },
       {
         path : 'create',
