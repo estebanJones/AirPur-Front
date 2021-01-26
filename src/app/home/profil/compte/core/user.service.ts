@@ -39,11 +39,9 @@ export class UserService {
 
     // Methode pour modifier informations de compte
     update(_email: string, _password: string): Observable<any> {
-<<<<<<< HEAD
-      return this.httpClient.put(`${environment.base_url}acceuil/updateUtilisateur`,
-=======
-      return this.httpClient.put(`${environment.baseUrl}acceuil/register`,
->>>>>>> 4bfa26fe10c30d848755a27010ed8c7bd9ea3126
+
+      return this.httpClient.put(`${environment.baseUrl}acceuil/updateUtilisateur`,
+
         {
           email: _email,
           password: _password
