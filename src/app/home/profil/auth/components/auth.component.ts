@@ -30,6 +30,7 @@ export class AuthComponent implements OnInit {
         // en cas d'erreur, affichage d'un message d'erreur
         err => this.err = true
       );
+      
       this.authSrv.utilisateurConnecteObs.subscribe(
         success => this.router.navigate(['map']),
         echec => console.log(echec)
