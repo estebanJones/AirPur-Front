@@ -21,7 +21,7 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div id="navbarNav">
       <ul class="nav navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" href="#">Mon compte<span class="sr-only">(current)</span></a>
@@ -61,13 +61,13 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div id="navbarNav">
       <ul class="nav navbar-nav ml-auto">
         <li class="nav-item active">
           <a class="nav-link" href="#">S'inscrire <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" [routerLink]="['connexion']" >Se Connecter</a>
+          <a class="nav-link" href="#" [routerLink]="['/profil/connexion']" >Se Connecter</a>
         </li>
       </ul>
     </div>
@@ -84,28 +84,28 @@
     <div class="row">
       <!--Grid column-->
       <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-        <h5 class="text-uppercase">Links</h5>
+        <a class="nav-link" [routerLink]="['/legal/conditionsGen']" >Conditions générales</a>
 
       </div>
       <!--Grid column-->
 
       <!--Grid column-->
       <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-        <h5 class="text-uppercase mb-0">Links</h5>
+        <a class="nav-link" [routerLink]="['/legal/confidentialites']">Confidentialités</a>
 
       </div>
       <!--Grid column-->
 
       <!--Grid column-->
       <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-        <h5 class="text-uppercase">Links</h5>
+        <a class="nav-link" [routerLink]="['/legal/aPropos']"> A propos</a>
 
       </div>
       <!--Grid column-->
 
       <!--Grid column-->
       <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-        <h5 class="text-uppercase mb-0">Links</h5>
+        <a class="nav-link" [routerLink]="['/legal/cookies']">Cookies</a>
 
       </div>
       <!--Grid column-->
@@ -116,8 +116,8 @@
 
   <!-- Copyright -->
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-    © 2020 Copyright:
-    <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    © 2021 Copyright:
+    <a class="text-dark" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstleyVEVO">RDS Team</a>
   </div>
   <!-- Copyright -->
 </footer>

@@ -13,7 +13,7 @@ export class UserService {
     constructor(private httpClient: HttpClient) {}
   
     login(_email: string, _password: string): Observable<any> {
-      return this.httpClient.post(`${environment.base_url}acceuil/auth`,
+      return this.httpClient.post(`${environment.baseUrl}acceuil/auth`,
         {
           email: _email,
           password: _password,
@@ -24,7 +24,7 @@ export class UserService {
     }
     // Methode pour Inscription
     register(_nom : string, _prenom : string, _username : string, _email: string, _password: string) : Observable<any> {
-      return this.httpClient.post(`${environment.base_url}accueil/register`,
+      return this.httpClient.post(`${environment.baseUrl}accueil/register`,
         { 
           nom : _nom,
           prenom : _prenom,
@@ -39,7 +39,11 @@ export class UserService {
 
     // Methode pour modifier informations de compte
     update(_email: string, _password: string): Observable<any> {
+<<<<<<< HEAD
       return this.httpClient.put(`${environment.base_url}acceuil/updateUtilisateur`,
+=======
+      return this.httpClient.put(`${environment.baseUrl}acceuil/register`,
+>>>>>>> 4bfa26fe10c30d848755a27010ed8c7bd9ea3126
         {
           email: _email,
           password: _password
