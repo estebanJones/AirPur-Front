@@ -1,51 +1,123 @@
-<div class="container" *ngIf="connected">
-  <div class="row row-cols-5">
-    <div class="col">
-      <button mat-button>Accueil</button>
-    </div>
+<!-- NavBar affichée si userConnected-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="connected">
+  
+  <a class="navbar-brand" href="#">
+    <img src="/assets/breath.png" width="30" height="30" alt="">
+    AirPur
+  </a>
 
-    <div class="col">
-      <button mat-button>Forum</button>
-    </div>
-    <div class="col">
-      <button mat-button [matMenuTriggerFor]="beforeMenu">Profil</button>
-      <mat-menu #beforeMenu="matMenu" xPosition="before">
-        <button mat-menu-item>Mon compte</button>
-        <button mat-menu-item>Mes relevès</button>
-        <button mat-menu-item>Se déconnecter</button>
-      </mat-menu>
-    </div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="col">
-      <button mat-button [matMenuTriggerFor]="afterMenu">Notification</button>
-      <mat-menu #afterMenu="matMenu" xPosition="after">
-        <button mat-menu-item>Notif 1</button>
-        <button mat-menu-item>Notif 2</button>
-      </mat-menu>
-    </div>
-    <div class="col">
-      <button (click)="onLogoutClick()" class="logout-btn" mat-button>Se deconnecter <mat-icon>exit_to_app</mat-icon></button>
-     
-      <span class="logout-label"></span>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <a class="nav-link" href="#"> Acceuil <span class="sr-only">(current)</span></a>
+
+
+    <form class="form-inline my-2 my-lg-0" id="lfCityForm">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Mon compte<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" [routerLink]="['connexion']" >Mes relevès</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Se déconnecter<span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
     </div>
   </div>
-</div>
+</nav>
 
-<div class="container" *ngIf="!connected">
-  <div class="row row-cols-4">
-    <div class="col">
-      <button mat-button>Accueil</button>
-    </div>
 
-    <div class="col">
-      <button mat-button>Inscription</button>
-    </div>
-    <div class="col">
-      <div class="col">
-        <button [routerLink]="['connexion']" mat-button>Connection</button>
-      </div>
+<!-- NavBar affichée si !userConnected-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="!connected">
+  
+  <a class="navbar-brand" href="#">
+    <img src="/assets/breath.png" width="30" height="30" alt="">
+    AirPur
+  </a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <a class="nav-link" href="#"> Acceuil <span class="sr-only">(current)</span></a>
+
+
+    <form class="form-inline my-2 my-lg-0" id="lfCityForm">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">S'inscrire <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" [routerLink]="['/profil/connexion']" >Se Connecter</a>
+        </li>
+      </ul>
     </div>
   </div>
-</div>
+</nav>
 
 <router-outlet></router-outlet>
+
+
+<footer class="bg-light text-center text-lg-start fixed-bottom">
+  <!-- Grid container -->
+  <div class="container p-4">
+    <!--Grid row-->
+    <div class="row">
+      <!--Grid column-->
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <a class="nav-link" [routerLink]="['/legal/conditionsGen']" >Conditions générales</a>
+
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <a class="nav-link" [routerLink]="['/legal/confidentialites']">Confidentialités</a>
+
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <a class="nav-link" [routerLink]="['/legal/aPropos']"> A propos</a>
+
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <a class="nav-link" [routerLink]="['/legal/cookies']">Cookies</a>
+
+      </div>
+      <!--Grid column-->
+    </div>
+    <!--Grid row-->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+    © 2021 Copyright:
+    <a class="text-dark" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstleyVEVO">RDS Team</a>
+  </div>
+  <!-- Copyright -->
+</footer>
