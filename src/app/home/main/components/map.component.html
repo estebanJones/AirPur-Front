@@ -4,7 +4,7 @@
         <div class="row">
                 <div class="col-7">
                         <!-- FAIRE APPEL API -->
-                        <google-map height="850" width="100%" (mapClick)="click($event)" [center]="center">
+                        <google-map height="850" width="100%" (mapClick)="click($event)" [center]="initialCenterMap" [zoom]="8">
                                 <map-marker
                                         #marker
                                         *ngFor="let marker of markers"

@@ -19,7 +19,8 @@ export class MapComponent implements OnInit {
     markers : any[] = [];
     stations : Station[] = [];
     connected : boolean = false;
-    center: google.maps.LatLngLiteral;
+    //center: google.maps.LatLngLiteral;
+    initialCenterMap: google.maps.LatLngLiteral =  {lat: 43.6600980666535, lng:  3.035913988993468};
 
 
 

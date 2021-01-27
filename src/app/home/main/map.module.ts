@@ -30,8 +30,6 @@ import { RouterModule } from 'node_modules/@angular/router';
     ],
     providers: [
       MapService
-    ],
-    exports: [
     ]
   })
   export class MapModule { }
