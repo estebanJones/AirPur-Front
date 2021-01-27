@@ -1,0 +1,28 @@
+<ng-container *ngIf="favoris.length != 0">
+  <div class="container" *ngFor="let f of favoris; index as i">
+      <h2>Favoris numéro: {{ i + 1 }}</h2>
+    <h3>Informations météorologique</h3>
+    <ng-container *ngFor="let m of f.dtosMeteoIndicateurs">
+    <div class="list-group">
+            <div href="#" class="list-group-item list-group-item-action active" aria-current="true" >
+                <div class="d-flex w-100 justify-content-between" >
+                <h5 class="mb-1">{{ f.dtosRelevePolluants[0].nomCommune }}</h5>
+                <small
+                    >{{ m.date | date: "d MMM YYYY" }} à
+                    {{ m.date | date: "hh:mm" }}</small
+                >
+                </div>
+                <p class="mb-1">
+                Vitesse moyenne du vent: {{ m.vitesseMoyVent }}
+                </p>
+                <p class="mb-1">
+                Cumul de la pluie: {{ m.cumulPluie }}
+                </p>
+                <p class="mb-1">
+                Temperature au sol: {{ m.tempatureSol }}
+                </p>
+            </div>
+          </div>
+        </ng-container>
+  </div>
+</ng-container>

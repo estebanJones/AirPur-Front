@@ -52,13 +52,10 @@ export class InscriptionComponent implements OnInit{
         const username = this.registerForm.get('username').value;
         const email = this.registerForm.get('email').value;
         const password = this.registerForm.get('password').value;
-        console.log(nom, prenom, username, email, password);
         this.userService.register(nom, prenom, username, email, password)
           .subscribe(result => {
-            console.log(result);
             this.router.navigate(['profile/connexion']);
            }, err => {
-            console.log(err);
             alert('Email existe déja')
            })
       }

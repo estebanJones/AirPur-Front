@@ -6,6 +6,7 @@ import { map, tap } from 'rxjs/operators';
 import { AuthService } from '../../profil/auth/core/auth.service';
 import { MapService } from '../core/map.service';
 import { Station } from "../core/station.model";
+
 @Component({
     selector: 'app-map',
     templateUrl: './map.component.html',
@@ -20,7 +21,7 @@ export class MapComponent implements OnInit {
     stations : Station[] = [];
     connected : boolean = false;
     center: google.maps.LatLngLiteral;
-
+    markerLoaded: boolean = false;
 
 
     constructor(private authServ : AuthService, private mapService: MapService , private router : Router) {
@@ -50,12 +51,13 @@ export class MapComponent implements OnInit {
                             idStation: station.id,
                             idCommune: station.communeId,
                             nomStation: station.nom,
-                            nomCommune: station.nomCommune          
+                            nomCommune: station.nomCommune      
                         },
                         title: 'Station pollution',
                         options: { animation: google.maps.Animation.BOUNCE },
                     })
                 })
+                this.markerLoaded = true;
                 console.log("Markers initilialisés");
             },
             error => console.log(error)

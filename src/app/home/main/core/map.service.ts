@@ -1,10 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { List } from 'node_modules_/postcss/lib/list';
 import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { MeteoIndicateur } from './meteoindicateur.model';
-import { Polluant } from './polluant.model';
 import { RelevePolluant } from './relevePolluant.model';
 import { Station } from './station.model';
 
@@ -19,7 +17,6 @@ export class MapService {
     constructor(private http: HttpClient) {
 
     }
-
 
     getAllStation() : Observable<Station[]>{
         return this.http.get<Station[]>(`${environment.baseUrl}${environment.getAllStations}`);  
