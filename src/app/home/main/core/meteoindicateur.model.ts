@@ -6,5 +6,5 @@ export class MeteoIndicateur {
 
 	constructor(params: any) {
 		Object.assign(this, params);
-	  }
+	}
 }

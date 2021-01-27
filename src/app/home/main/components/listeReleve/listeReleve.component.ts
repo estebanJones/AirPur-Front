@@ -42,7 +42,7 @@ export class ListeRelevesComponent implements OnInit {
       )
     }
 
-    openDialog() {
+    openFavoris() {
       const dialogRef = this.dialog.open(CreateComponent);
   
       dialogRef.afterClosed().subscribe(result => {

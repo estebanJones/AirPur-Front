@@ -49,7 +49,8 @@ export class MapComponent implements OnInit {
                             color: 'white',
                             idStation: station.id,
                             idCommune: station.communeId,
-                            nomStation: `${station.nom}`           
+                            nomStation: station.nom,
+                            nomCommune: station.nomCommune          
                         },
                         title: 'Station pollution',
                         options: { animation: google.maps.Animation.BOUNCE },
@@ -59,6 +60,7 @@ export class MapComponent implements OnInit {
             },
             error => console.log(error)
         );
+        
     }
 
      click(event: google.maps.MapMouseEvent) {
@@ -82,9 +84,15 @@ export class MapComponent implements OnInit {
   clicked : boolean = false;
 
   clickMarker(marker: MapMarker, content) {
-      this.getPolluantAndEmit(marker);
-      this.getMeteoByCommuneAndEmit(marker);
-      this.router.navigate(['map/listeReleve']);
+    localStorage.removeItem("commune");
+
+    this.getPolluantAndEmit(marker);
+    this.getMeteoByCommuneAndEmit(marker);
+
+    let commune = this.formatInfoCommuneToStorage(marker);
+    localStorage.setItem("commune", commune);
+
+    this.router.navigate(['map/listeReleve']);
     //this.infoWindow.open(marker);
   }
 
@@ -101,11 +109,18 @@ export class MapComponent implements OnInit {
   getMeteoByCommuneAndEmit(marker: MapMarker) {
     this.mapService.getMeteoByCommune(marker.label['idCommune']).subscribe(
         meteoReleve => {
-            console.log(meteoReleve);
             this.clicked = true;
             this.mapService.emitMeteo(meteoReleve);
       },
         error => console.log(error)
     );
+  }
+
+  formatInfoCommuneToStorage(marker: MapMarker) : any{
+    let commune: any = {
+        idCommune: marker.label['idCommune'],
+        nomCommune: marker.label['nomCommune']
+    }
+    return JSON.stringify(commune);
   }
 }

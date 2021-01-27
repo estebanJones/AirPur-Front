@@ -7,4 +7,5 @@ export class RelevePolluant {
     public idStation: number;
     public nomStation: string;
     public nomCommune: string;
+    public idCommune: number;
 }

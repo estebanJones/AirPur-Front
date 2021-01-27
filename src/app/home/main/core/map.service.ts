@@ -52,6 +52,7 @@ export class MapService {
     emitMeteo(meteo: MeteoIndicateur) {
         this.meteoSubject.next(meteo);
     }
+    
     onMeteo() : Observable<MeteoIndicateur>{
         return this.meteoSubject.asObservable();
     }
