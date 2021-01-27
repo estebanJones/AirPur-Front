@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-auth',
-    templateUrl: './details.component.html',
-    styleUrls: ['./details.component.scss']
+    templateUrl: './historique.component.html',
+    styleUrls: ['./historique.component.scss']
   })
-export class DetailsComponent implements OnInit {
+export class HistoriqueComponent implements OnInit {
     constructor() {
         
     }

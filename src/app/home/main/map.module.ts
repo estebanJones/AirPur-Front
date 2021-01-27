@@ -3,11 +3,10 @@ import { CommonModule } from "@angular/common";
 import { MapRoutingModule } from "./map-routing.module"
 import { GoogleMapsModule } from '@angular/google-maps';
 import { CreateComponent } from "./components/create/create.component";
-import { DetailsComponent } from "./components/details/details.component";
+import { HistoriqueComponent } from "./components/historique/historique.component";
 import { ListeRelevesComponent } from "./components/listeReleve/listeReleve.component";
 import { MapComponent } from './components/map.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { MapService } from "./core/map.service";
 import { FormsModule } from '@angular/forms';
@@ -17,7 +16,7 @@ import { RouterModule } from 'node_modules/@angular/router';
     declarations: [
       ListeRelevesComponent,
       CreateComponent,
-      DetailsComponent,
+      HistoriqueComponent,
       MapComponent
     ],
     imports: [

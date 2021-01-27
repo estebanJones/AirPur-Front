@@ -14,15 +14,11 @@ import { Station } from "../core/station.model";
 
 export class MapComponent implements OnInit {
     @ViewChild(MapInfoWindow, { static: false }) infoWindow: MapInfoWindow;
-
+    initialCenterMap: google.maps.LatLngLiteral =  {lat: 43.6600980666535, lng:  3.035913988993468};
 
     markers : any[] = [];
     stations : Station[] = [];
     connected : boolean = false;
-    //center: google.maps.LatLngLiteral;
-    initialCenterMap: google.maps.LatLngLiteral =  {lat: 43.6600980666535, lng:  3.035913988993468};
-
-
 
     constructor(private authServ : AuthService, private mapService: MapService , private router : Router) {
         this.authServ.utilisateurConnecteObs.subscribe(
@@ -49,8 +45,9 @@ export class MapComponent implements OnInit {
                         label: {
                             color: 'white',
                             idStation: station.id,
-                            nomStation: `${station.nom}`,
-                            
+                            idCommune: station.communeId,
+                            nomStation: station.nom,
+                            nomCommune: station.nomCommune          
                         },
                         title: 'Station pollution',
                         options: { animation: google.maps.Animation.BOUNCE },
@@ -60,6 +57,7 @@ export class MapComponent implements OnInit {
             },
             error => console.log(error)
         );
+        
     }
 
      click(event: google.maps.MapMouseEvent) {
@@ -83,15 +81,43 @@ export class MapComponent implements OnInit {
   clicked : boolean = false;
 
   clickMarker(marker: MapMarker, content) {
-      this.mapService.getPolluantsByStation(marker.label['idStation']).subscribe(
-          releves => {
-              this.clicked = true;
-              this.mapService.emit(releves);
-        },
-          error => console.log(error)
-      );
+    localStorage.removeItem("commune");
 
-      this.router.navigate(['map/listeReleve']);
+    this.getPolluantAndEmit(marker);
+    this.getMeteoByCommuneAndEmit(marker);
+
+    let commune = this.formatInfoCommuneToStorage(marker);
+    localStorage.setItem("commune", commune);
+
+    this.router.navigate(['map/listeReleve']);
     //this.infoWindow.open(marker);
+  }
+
+  getPolluantAndEmit(marker: MapMarker) {
+    this.mapService.getPolluantsByStation(marker.label['idStation']).subscribe(
+        releves => {
+            this.clicked = true;
+            this.mapService.emitPolluant(releves);
+      },
+        error => console.log(error)
+    );
+  }
+
+  getMeteoByCommuneAndEmit(marker: MapMarker) {
+    this.mapService.getMeteoByCommune(marker.label['idCommune']).subscribe(
+        meteoReleve => {
+            this.clicked = true;
+            this.mapService.emitMeteo(meteoReleve);
+      },
+        error => console.log(error)
+    );
+  }
+
+  formatInfoCommuneToStorage(marker: MapMarker) : any{
+    let commune: any = {
+        idCommune: marker.label['idCommune'],
+        nomCommune: marker.label['nomCommune']
+    }
+    return JSON.stringify(commune);
   }
 }
