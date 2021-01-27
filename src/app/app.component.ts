@@ -10,6 +10,7 @@ import { AuthService } from './home/profil/auth/core/auth.service';
 export class AppComponent implements OnInit{
   title = 'airpur';
    connected : boolean = false;
+   inputSearch: string;
 
   constructor(private authServ : AuthService, private router : Router) {
       this.authServ.utilisateurConnecteObs.subscribe(
@@ -35,4 +36,6 @@ export class AppComponent implements OnInit{
     this.router.navigate(['']);
     this.connected = false;
   }
+
+  
 }
