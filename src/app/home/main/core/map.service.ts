@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment.prod';
 import { Polluant } from './polluant.model';
 import { RelevePolluant } from './relevePolluant.model';
 import { Station } from './station.model';
+import { Commune } from './commune.model'
 
 @Injectable({
     providedIn: 'root'
@@ -15,7 +16,6 @@ export class MapService {
     constructor(private http: HttpClient) {
 
     }
-
    
     getAllStation() : Observable<Station[]>{
         return this.http.get<Station[]>(`${environment.baseUrl}${environment.getAllStations}`);  
@@ -23,6 +23,10 @@ export class MapService {
 
    getPolluantsByStation(idStation : number): Observable<RelevePolluant[]> {
         return this.http.get<RelevePolluant[]>(`${environment.baseUrl}${environment.getStation}/${idStation}`);
+    }
+
+    getCommune(nomCommune :string): Observable<Commune> {
+        return this.http.get<Commune>(`${environment.baseUrl}${environment.getCommune}/${nomCommune}`)
     }
 
     private subject = new Subject<RelevePolluant[]>();
@@ -37,4 +41,5 @@ export class MapService {
     onPolluant() : Observable<RelevePolluant[]>{
         return this.subject.asObservable();
     }
+
 }

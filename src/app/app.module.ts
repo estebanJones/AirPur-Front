@@ -19,6 +19,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
+import { MapService } from './home/main/core/map.service';
+
 
 //import { ConditionsGenComponent } from './home/legal/conditions-gen/conditions-gen.component';
 //import { ConfidentialiteComponent } from './home/legal/confidentialite/confidentialite.component';
@@ -50,7 +52,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   ],
   providers: [
     AuthService,
-    MenuService
+    MenuService,
+    MapService
   ],
   bootstrap: [AppComponent]
 })

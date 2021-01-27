@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './home/profil/auth/core/auth.service';
+import { MapService } from './home/main/core/map.service'
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,10 @@ import { AuthService } from './home/profil/auth/core/auth.service';
 })
 export class AppComponent implements OnInit{
   title = 'airpur';
-   connected : boolean = false;
-   inputSearch: string;
+  connected : boolean = false;
+  inputSearchCommune: string;
 
-  constructor(private authServ : AuthService, private router : Router) {
+  constructor(private authServ : AuthService, private router : Router, private mapServ : MapService) {
       this.authServ.utilisateurConnecteObs.subscribe(
           utilisateurConnected => {
               if(!utilisateurConnected.estAnonyme()) {
@@ -37,5 +38,13 @@ export class AppComponent implements OnInit{
     this.connected = false;
   }
 
+  chercherCommune(){
+    console.log( this.inputSearchCommune);
+    this.mapServ.getCommune(this.inputSearchCommune)
+    .subscribe(
+      data => { console.log("coucou retour OK") , data },
+      error => { console.log(error) }
+    )
+  }
   
 }
