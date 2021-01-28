@@ -5,6 +5,6 @@
 export const config = {
     getAllStations : 'station/all',
     getStation : 'station',
-    getCommune : 'commune',
+    getCommuneALike : 'commune/like',
     getMeteo : 'commune/meteo'
   };

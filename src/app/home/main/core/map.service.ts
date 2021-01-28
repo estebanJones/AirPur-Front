@@ -8,6 +8,7 @@ import { Polluant } from './polluant.model';
 import { RelevePolluant } from './relevePolluant.model';
 import { Station } from './station.model';
 import { Commune } from './commune.model'
+import { CommuneLight } from './communeLight.model';
 
 @Injectable({
     providedIn: 'root'
@@ -29,8 +30,8 @@ export class MapService {
         return this.http.get<RelevePolluant[]>(`${environment.baseUrl}${environment.getStation}/${idStation}`);
     }
 
-    getCommune(nomCommune :string): Observable<Commune> {
-        return this.http.get<Commune>(`${environment.baseUrl}${environment.getCommune}/${nomCommune}`)
+    searchCommunes(nomCommune : any): Observable<CommuneLight[]> {
+        return this.http.get<CommuneLight[]>(`${environment.baseUrl}${environment.getCommuneALike}/${nomCommune}`)
     }
 
     emitPolluant(releve: RelevePolluant[]) {
