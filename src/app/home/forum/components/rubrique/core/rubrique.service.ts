@@ -1,6 +1,4 @@
-//import{ environment } from '../../../../../environments/environment';
-//import { environment } from '../../../../environments/environment';
-import { environment } from '/Users/moussa/AirPur-Front/src/environments/environment';
+import { environment } from './../../../../../../environments/environment.prod';
 import { Injectable } from "@angular/core";
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';

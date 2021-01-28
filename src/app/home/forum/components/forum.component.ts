@@ -9,7 +9,7 @@ export class ForumComponent implements OnInit {
   rubriqueOne = 'mon premier rubrique';
   rubriqueTwo = 'mon deuxieme rubrique';
   rubriqueTree = 'mon troisieme';
- 
+
   constructor() { }
 
   ngOnInit() {

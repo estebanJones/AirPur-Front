@@ -17,13 +17,13 @@ const routes: Routes = [
     path: 'map',
     loadChildren: () => import('./home/main/map.module').then(res => res.MapModule)
   },
-  
+
   {
     path: 'profil',
     loadChildren: () => import('./home/profil/profile.module').then(res => res.ProfileModule)
   },
 
-  { path: 'legal', 
+  { path: 'legal',
     loadChildren: () => import('./home/legal/legal.module').then(res=> res.LegalModule)
   },
   {
@@ -32,10 +32,9 @@ const routes: Routes = [
   },
 
   { path: 'notifications', component: NotificationComponent},
-  { path: 'forum', component: ForumComponent },
   { path: '**', redirectTo: 'map' },
   { path: '', redirectTo: 'map', pathMatch: 'full'},
-    
+
   //{ path: 'conditionsGen', component: ConditionsGenComponent},
   //{ path: 'confidentialites', component: ConfidentialiteComponent},
   //{ path: 'aPropos', component: AProposComponent},

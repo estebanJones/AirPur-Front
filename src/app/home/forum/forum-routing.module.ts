@@ -6,12 +6,12 @@ import { RubriqueComponent } from './components/rubrique/component/rubrique.ompo
 import { MessageComponent } from './components/message/component/message.component';
 
 
-// const routes : Routes = [ 
-//    { path: '', component: RubriqueComponent},  
+// const routes : Routes = [
+//    { path: '', component: RubriqueComponent},
 //    { path: 'rubrique', component: RubriqueComponent},
 //    { path: 'message', component: MessageComponent},
 //    { path: 'forum', component: ForumComponent},
-//    { path: '**', redirectTo :''}  
+//    { path: '**', redirectTo :''}
 // ];
 
 const routes : Routes = [

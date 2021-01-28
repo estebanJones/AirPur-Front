@@ -12,6 +12,7 @@ export class RubriqueComponent implements OnInit {
     rubriques : Rubrique[] = [];
     selectedRubrique : Rubrique;
     rubriqueForm: FormGroup;
+    showAddForm = false;
     //@Input() rubriquelName: string;
     //rubriqueName: string = 'Rubrique1';
     //@Input() rubriqueName: string;
@@ -22,29 +23,28 @@ export class RubriqueComponent implements OnInit {
             .subscribe(
                 result => {
                     this.rubriques = result;
-                }, 
+                },
                 err => {
-                    alert('Une erreur est surveneu');
-                }        
+                    // alert('Une erreur est surveneu');
+                }
             )
 
             this.rubriqueForm = this.formBuilder.group({
                 content : ['', Validators.required],
-                postedOn : ['', Validators.required],
                 title : ['', Validators.required],
                 description: ['', Validators.required]
-    
-            })    
+
+            })
     }
     onSelect(rubrique: Rubrique): void {
         this.selectedRubrique = rubrique;
       }
-   
+
 
     sendRubrique() {
         if (this.rubriqueForm.valid) {
           const content = this.rubriqueForm.get('content').value;
-          const postedOn = this.rubriqueForm.get('postedOn').value;
+          const postedOn = new Date();
           const title = this.rubriqueForm.get('title').value;
           const description = this.rubriqueForm.get('description').value;
           console.log(content, postedOn, title, description);
@@ -58,5 +58,5 @@ export class RubriqueComponent implements OnInit {
              })
         }
       }
-  
+
 }
