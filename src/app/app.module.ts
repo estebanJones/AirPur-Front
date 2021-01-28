@@ -20,6 +20,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
+
 //import { ConditionsGenComponent } from './home/legal/conditions-gen/conditions-gen.component';
 //import { ConfidentialiteComponent } from './home/legal/confidentialite/confidentialite.component';
 //import { AProposComponent } from './home/legal/a-propos/a-propos.component';

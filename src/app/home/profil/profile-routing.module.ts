@@ -13,8 +13,8 @@ const routes : Routes = [
   { path: 'connexion', component: AuthComponent},
   { path: 'inscription', component: InscriptionComponent},
   { path: 'favoris', component: FavorisComponent},
-  { path: '**', redirectTo :''},
   { path: 'moncompte', component: CompteComponent},
+  { path: '**', redirectTo :''}
   
 ];
 

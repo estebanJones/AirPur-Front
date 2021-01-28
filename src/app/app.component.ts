@@ -14,7 +14,9 @@ export class AppComponent implements OnInit{
   constructor(private authServ : AuthService, private router : Router) {
       this.authServ.utilisateurConnecteObs.subscribe(
           utilisateurConnected => {
+            console.log("ICIIIII ", utilisateurConnected)
               if(!utilisateurConnected.estAnonyme()) {
+                console.log("IL N EST PAS ANONYME ", utilisateurConnected)
                   this.connected = true;
               }
           },
@@ -28,6 +30,7 @@ export class AppComponent implements OnInit{
     // Au lancement de l'application
     // check si l'utilisateur est en cache ou en bdd
     this.authServ.verifierAuthentification().subscribe();
+    
   }
 
   onLogoutClick() {

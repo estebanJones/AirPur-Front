@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpHeaders } from 'node_modules_/@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { MeteoIndicateur } from './meteoindicateur.model';
@@ -17,8 +18,13 @@ export class MapService {
     constructor(private http: HttpClient) {
 
     }
-
+    
     getAllStation() : Observable<Station[]>{
+        const optionRequete = {
+            headers: new HttpHeaders({ 
+              'Access-Control-Allow-Origin':'*'
+            })
+          };
         return this.http.get<Station[]>(`${environment.baseUrl}${environment.getAllStations}`);  
     }
 //    ----------------------------------         POLLUANT  ------------------------------------------------------------

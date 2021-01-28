@@ -8,6 +8,7 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { FavorisService } from './compte/core/favoris.service';
 import { FavorisComponent } from "./favoris/components/favoris.component";
 
+
 @NgModule({
     declarations: [
       InscriptionComponent,
@@ -21,7 +22,8 @@ import { FavorisComponent } from "./favoris/components/favoris.component";
       ProfileRoutingModule
     ],
     providers : [
-      FavorisService
+      FavorisService,
+
     ],
     exports : [
       
