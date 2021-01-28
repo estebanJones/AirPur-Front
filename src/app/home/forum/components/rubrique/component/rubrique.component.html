@@ -1,0 +1,50 @@
+<h2>La liste des rubriques</h2>
+
+<!-- Faire un tableau aprés -->
+<!-- <table mat-table [dataSource]="rubriques">
+        <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef> Titre </th>
+                <td mat-cell *matCellDef="let rubrique"> {{rubrique.title}} </td>
+        </ng-container>    
+        
+</table>  -->
+<!-- 
+<li class="list-group-item" *ngFor="let rubrique of rubriques" (click)="onSelect(rubrique)">
+        <span>{{rubrique.title | uppercase}} </span> {{rubrique.content}} {{rubrique.description}} {{rubrique.postedOn}}
+</li> -->
+
+
+<div class="login-container card">
+        <form>
+                <input type="text" class="form-control" placeholder="titre rubrique"
+                        [ngClass]="{'is-invalid' : rubriqueForm.controls.title.hasError('required')}"
+                        [formControl]="rubriqueForm.controls.title">
+                <input type="text" class="form-control" placeholder="description rubrique"
+                        [ngClass]="{'is-invalid' : rubriqueForm.controls.description.hasError('required')}"
+                        [formControl]="rubriqueForm.controls.description">
+
+                <input type="text" class="form-control" placeholder="contenu rubrique"
+                        [ngClass]="{'is-invalid' : rubriqueForm.controls.content.hasError('required')}"
+                        [formControl]="rubriqueForm.controls.content">
+
+                <input type="text" class="form-control" placeholder="date"
+                        [ngClass]="{'is-invalid' : rubriqueForm.controls.postedOn.hasError('required')}"
+                        [formControl]="rubriqueForm.controls.postedOn">
+
+                        <button mat-fab disabled aria-label="Example icon button with a heart icon">
+                                        <mat-icon>favorite</mat-icon>
+                                      </button>
+                <button class="btn btn-primary" (click)="sendRubrique()">Envoyer</button>
+
+        </form>
+</div>
+
+<!-- Ajout de la fonction pour rediriger sur la rubrique selectionner -->
+<!-- 
+  <li class="list-group-item">
+        <h4>Ceci est dans RubriqueComponent</h4>
+        <li *ngFor="let rubrique of rubriques"
+[class.selected]="rubrique === selectedRubrique"
+(click)="onSelect(rubrique)">
+<span class="badge">{{rubrique.content  | uppercase}}</span> {{rubrique.postedOn}} {{rubrique.title}} {{rubrique.description}}
+</li> -->

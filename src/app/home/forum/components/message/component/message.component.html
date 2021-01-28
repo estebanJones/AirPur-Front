@@ -1,0 +1,30 @@
+<!-- Details message -->
+<h1>Ma liste de message</h1>
+<h4>Ceci est dans MessageComponent</h4>
+<!-- Pour chaque message j'affiche son contenu -->
+<li class="list-group-item" *ngFor="let message of messages" (click)="onSelect(message)">
+    {{message.content}} {{message.postedOn}}
+    <!-- <input type="text" class="form-control" [(ngModel)]="message"> -->
+</li>
+<div>
+
+    <div class="login-container card">
+        <!-- <h2>Inscription</h2> -->
+        <form>
+            <input type="text" class="form-control" placeholder="nouveau message"
+                [ngClass]="{'is-invalid' : messageForm.controls.content.hasError('required')}"
+                [formControl]="messageForm.controls.content">
+            <input type="text" class="form-control" placeholder="date"
+                [ngClass]="{'is-invalid' : messageForm.controls.postedOn.hasError('required')}"
+                [formControl]="messageForm.controls.postedOn">
+            <button class="btn btn-primary" (click)="sendMessage()">Envoyer</button>
+
+        </form>
+
+        <!-- <input type="text" class="form-control" placeholder="nouveau message"
+            [ngClass]="{'is-invalid' : messageForm.controls.content.hasError('required')}"
+            [formControl]="messageForm.controls.content">
+        <button class="btn btn-primary" (click)="sendMessage()">Envoyer</button>
+    </div> -->
+        <!-- <input [(ngModel)]="message.content" placeholder="nouveau message"/>
+<button  [routerLink]="['/message']" routerLinkActive="router-link-active">Details</button> -->
