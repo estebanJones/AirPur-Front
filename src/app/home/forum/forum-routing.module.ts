@@ -2,17 +2,9 @@ import { NgModule } from '@angular/core';
 
 import { Routes, RouterModule } from '@angular/router';
 import { ForumComponent } from './components/forum.component';
-import { RubriqueComponent } from './components/rubrique/component/rubrique.omponent';
 import { MessageComponent } from './components/message/component/message.component';
+import { RubriqueComponent } from './components/rubrique/component/rubrique.component';
 
-
-// const routes : Routes = [
-//    { path: '', component: RubriqueComponent},
-//    { path: 'rubrique', component: RubriqueComponent},
-//    { path: 'message', component: MessageComponent},
-//    { path: 'forum', component: ForumComponent},
-//    { path: '**', redirectTo :''}
-// ];
 
 const routes : Routes = [
   {
@@ -23,8 +15,14 @@ const routes : Routes = [
         path : 'rubrique',
         component : RubriqueComponent
       },
+      //Ajoout app-message dans le routique
       {
-        path : 'message/:id',
+        path : 'message',
+        component : MessageComponent
+      },
+
+      {
+        path : 'message/:rubriqueId',
         component : MessageComponent
       },
       {

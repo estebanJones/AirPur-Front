@@ -1,5 +1,6 @@
 <h2>La liste des rubriques</h2>
 
+<!-- La liste des rubruqes -->
 
 <mat-accordion class="full-width">
     <mat-expansion-panel *ngFor="let rubrique of rubriques">
@@ -12,10 +13,12 @@
             </mat-panel-description>
         </mat-expansion-panel-header>
         <p>{{rubrique.description}}</p>
+        <!-- Je redirige ici le composant de mseeage correspondant -->
         <button mat-stroked-button color="primary" (click)="onSelect(rubrique)">Afficher les messages</button>
     </mat-expansion-panel>
 </mat-accordion>
 
+<!-- Ajout du bout boutton + -->
 
 <div class="btn-container" [hidden]="showAddForm">
     <button mat-fab color="primary" class="add-btn" (click)="showAddForm = true">
@@ -23,7 +26,7 @@
   </button>
 </div>
 
-
+<!-- Partie du formulaire cahcé -->
 <mat-card class="form-container" [hidden]="!showAddForm">
     <form>
         <mat-form-field class="full-width">
@@ -31,7 +34,6 @@
             <input matInput placeholder="Titre de la rubrique" [formControl]="rubriqueForm.controls.title">
             <mat-error *ngIf="rubriqueForm.controls.title.hasError('required')">Ce champ est requis</mat-error>
         </mat-form-field>
-
 
         <mat-form-field class="full-width">
             <mat-label>Description de la rubrique</mat-label>

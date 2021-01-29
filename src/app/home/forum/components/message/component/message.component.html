@@ -1,30 +1,63 @@
 <!-- Details message -->
-<h1>Ma liste de message</h1>
-<h4>Ceci est dans MessageComponent</h4>
+<h1>La liste de message</h1>
 <!-- Pour chaque message j'affiche son contenu -->
-<li class="list-group-item" *ngFor="let message of messages" (click)="onSelect(message)">
-    {{message.content}} {{message.postedOn}}
-    <!-- <input type="text" class="form-control" [(ngModel)]="message"> -->
-</li>
-<div>
+<mat-accordion class="full-width">
+    <mat-expansion-panel *ngFor="let message of messages">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+            </mat-panel-title>
+            <mat-panel-description>
+                {{message.postedOn}} <br /> Créée par : XXXXXX - Le {{message.content}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <!-- <p>{{rubrique.description}}</p> -->
+        <!-- <button mat-stroked-button color="primary" (click)="onSelect(rubrique)">Afficher les messages</button> -->
+        <button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon">
+                <mat-icon>favorite</mat-icon>
+              </button>
+            
+    </mat-expansion-panel>
+</mat-accordion>
 
-    <div class="login-container card">
-        <!-- <h2>Inscription</h2> -->
-        <form>
-            <input type="text" class="form-control" placeholder="nouveau message"
-                [ngClass]="{'is-invalid' : messageForm.controls.content.hasError('required')}"
-                [formControl]="messageForm.controls.content">
-            <input type="text" class="form-control" placeholder="date"
-                [ngClass]="{'is-invalid' : messageForm.controls.postedOn.hasError('required')}"
-                [formControl]="messageForm.controls.postedOn">
-            <button class="btn btn-primary" (click)="sendMessage()">Envoyer</button>
+<!-- Ajout du bout boutton + -->
 
-        </form>
+<div class="btn-container" [hidden]="showAddForm">
+    <button mat-fab color="primary" class="add-btn" (click)="showAddForm = true">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
 
-        <!-- <input type="text" class="form-control" placeholder="nouveau message"
+<!-- Partie du formulaire cahcé -->
+
+<mat-card class="form-container" [hidden]="!showAddForm">
+    <form>
+        <mat-form-field class="full-width">
+            <mat-label>Contenu de du message</mat-label>
+            <input matInput placeholder="Contenu du message" 
+            [formControl]="messageForm.controls.content">
+            <mat-error *ngIf="messageForm.controls.content.hasError('required')">Ce champ est requis</mat-error>
+        </mat-form-field>
+
+        <input type="datetime-local" class="form-control" placeholder="date"
+            [ngClass]="{'is-invalid' : messageForm.controls.postedOn.hasError('required')}"
+            [formControl]="messageForm.controls.postedOn">
+
+        <button class="btn btn-primary" (click)="sendMessage()">Envoyer</button>
+    </form>
+</mat-card>
+
+<!-- Ancienne version -->
+
+
+<!-- <li class="list-group-item" *ngFor="let message of messages" (click)="onSelect(message)">
+                {{message.content}} {{message.postedOn}}
+            </li> -->
+
+
+<!-- <input type="text" class="form-control" placeholder="nouveau message"
             [ngClass]="{'is-invalid' : messageForm.controls.content.hasError('required')}"
             [formControl]="messageForm.controls.content">
         <button class="btn btn-primary" (click)="sendMessage()">Envoyer</button>
     </div> -->
-        <!-- <input [(ngModel)]="message.content" placeholder="nouveau message"/>
+<!-- <input [(ngModel)]="message.content" placeholder="nouveau message"/>
 <button  [routerLink]="['/message']" routerLinkActive="router-link-active">Details</button> -->

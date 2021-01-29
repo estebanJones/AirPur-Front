@@ -1,9 +1,11 @@
 import { environment } from './../../../../../../environments/environment.prod';
 import { Injectable } from "@angular/core";
-import { Observable, of } from 'rxjs';
+import { Observable, of, from } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Rubrique } from './rubrique.models';
+import {Message} from '../../message/core/message.models'
+
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +43,7 @@ export class RubriqueService {
     }
 
   }
-
+ 
 
 
   // Methode pour recupérer les données en cache
@@ -59,13 +61,14 @@ export class RubriqueService {
   /** Ajout et Modification de rubriques - rubrique */
 
   //Methode pour Ajouter un rubrique
-  postRubriques(_content: string, _postedOn: Date, _title: string, _description: string): Observable<any> {
+  postRubriques(_content: string, _postedOn: Date, _title: string, _description: string, _utilisateurId : number): Observable<any> {
     return this.httpClient.post(`${environment.baseUrl}accueil/rubriques`,
       {
         content: _content,
         postedOn: _postedOn,
         title: _title,
-        description: _description
+        description: _description,
+        utilisateurId : _utilisateurId
       }
     ).pipe(tap(resultat => {
       localStorage.setItem('APP-USER', JSON.stringify(resultat))

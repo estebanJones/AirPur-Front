@@ -23,6 +23,11 @@ export class MessageService {
             return this.httpClient.get<Message[]>(`${environment.baseUrl}accueil/messages`);
         }
     }
+     //Methode pour avoir la liste des message par rubrique
+  getMessageByRubrique(rubriqueId : number) : Observable<Message[]> {
+    return this.httpClient.get<[Message]>(`${environment.baseUrl}accueil/messages/${rubriqueId}`)
+
+  } 
 
     // Methode pour recupérer les données en cache
     private getMessagesFromCache(): Message[] {
@@ -30,7 +35,19 @@ export class MessageService {
         return !!result ? <Message[]>JSON.parse(result) : null;
     }
 
+    // getMessageByRubrique(rubriqueId : number) : Observable<Message[]> {
+    //     const cachedData = this.getMessagesFromCache();
+    //     if (!!cachedData) {
+    //         // Si oui, retourner les données en cache
+    //         return of(cachedData);
+    //     }
+    //     else {
+    //         // sinon, faire la requete http et mettre en cache les données
+    //         return this.httpClient.get<Message[]>(`${environment.baseUrl}accueil/messages`);
+    //     }
 
+    // }
+    ///accueil/messages/1
     /** Ajout et Modification de rubriques - rubrique */
 
     //Methode pour Ajouter un rubrique
@@ -40,7 +57,7 @@ export class MessageService {
             {
                 content: _content,
                 postedOn: _postedOn,
-
+              
             }
         ).pipe(tap(resultat => {
             localStorage.setItem('APP-USER', JSON.stringify(resultat))
