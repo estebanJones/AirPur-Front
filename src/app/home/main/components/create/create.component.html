@@ -1,11 +1,11 @@
 <div class="container-fluid">
   <h3>Créer un relevé perso</h3>
-  <form (ngSubmit)="validFavoris()">
+  <form >
     <div class="example-container">
       <!-- ENTRER LE NOM D UNE VILLE -->
         <mat-form-field
           appearance="fill"
-          [floatLabel]="floatLabelControl.value"
+         
         >
           <mat-label>Nom de la ville</mat-label>
           <input
@@ -19,17 +19,17 @@
     <!-- CHOISIR UN INDICATEUR -->
     <div>
       <label>Indicateur:</label>
-      <mat-radio-group [formControl]="floatLabelControl">
-        <mat-radio-button name="meteo" [(ngModel)]="favoris.meteo" #champ1="ngModel" value=true>Meteo</mat-radio-button>
-        <mat-radio-button [(ngModel)]="favoris.air" #champ2="ngModel" value=true>Air</mat-radio-button>
+      <mat-radio-group [formControl]="formulaireFavoris.controls.indicateur">
+        <mat-radio-button name="meteo"   value="meteo">Meteo</mat-radio-button>
+        <mat-radio-button  value="air">Air</mat-radio-button>
       </mat-radio-group>
     </div>
 
     <mat-form-field appearance="fill">
       <mat-label>Enter a date range</mat-label>
-      <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
-        <input matStartDate [(ngModel)]="favoris.choixDateDebut" #champ3="ngModel" placeholder="Start date" />
-        <input matEndDate [(ngModel)]="favoris.choixDateFin" #champ3="ngModel" placeholder="End date" />
+      <mat-date-range-input  [rangePicker]="picker">
+        <input matStartDate [formControl]="formulaireFavoris.controls.dateDebut" placeholder="Start date" />
+        <input matEndDate  [formControl]="formulaireFavoris.controls.dateFin" placeholder="End date" />
       </mat-date-range-input>
       <mat-datepicker-toggle
         style="color: rgb(255, 136, 0)"
@@ -37,15 +37,13 @@
       ></mat-datepicker-toggle>
       <mat-date-range-picker #picker></mat-date-range-picker>
 
-      <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')"
+      <mat-error *ngIf="formulaireFavoris.controls.dateDebut.hasError('matStartDateInvalid')"
         >Invalid start date</mat-error
       >
-      <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')"
+      <mat-error *ngIf="formulaireFavoris.controls.dateFin.hasError('matEndDateInvalid')"
         >Invalid end date</mat-error
       >
     </mat-form-field>
-
-    <p>Selected range: {{ range.value | json }}</p>
 
     <button mat-raised-button color="warn" type="submit" (click)="validFavoris()">
       Valider

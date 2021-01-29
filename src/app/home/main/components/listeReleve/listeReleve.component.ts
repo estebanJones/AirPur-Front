@@ -6,6 +6,7 @@ import { RelevePolluant } from '../../core/relevePolluant.model';
 import {MatDialog} from '@angular/material/dialog';
 import {CreateComponent} from '../create/create.component';
 import { HistoriqueComponent } from '../historique/historique.component';
+
 @Component({
     selector: 'app-auth',
     templateUrl: './listeReleve.component.html',
@@ -22,10 +23,8 @@ export class ListeRelevesComponent implements OnInit {
     }
 
     ngOnInit() {
-      console.log("DEBUT INIT ", this.relevesPolluants.length)
       this.subscribeToPolluant();
       this.subscribeToMeteo();
-      console.log("FIN INIT")
     }
 
     subscribeToPolluant() {

@@ -1,34 +1,48 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+<<<<<<< HEAD
+=======
+import { HttpHeaders } from 'node_modules_/@angular/common/http';
+>>>>>>> bde7297a913a35dc7c0c53f2411782293de7ce33
 import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { MeteoIndicateur } from './meteoindicateur.model';
 import { RelevePolluant } from './relevePolluant.model';
 import { Station } from './station.model';
 import { Commune } from './commune.model'
+import { CommuneLight } from './communeLight.model';
+import { CommuneInsee } from './CommuneInsee.model';
+import { BehaviorSubject } from 'rxjs';
+import { share } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
   })
 
 export class MapService {
+    
     private polluantSubject = new Subject<RelevePolluant[]>();
     private meteoSubject = new Subject<MeteoIndicateur>();
-
+    static communeSearchedSubj = new Subject<CommuneInsee>();  
+  
     constructor(private http: HttpClient) {
-
     }
 
     getAllStation() : Observable<Station[]>{
+<<<<<<< HEAD
         return this.http.get<Station[]>(`${environment.baseUrl}${environment.getAllStations}`);
+=======
+        const optionRequete = {
+            headers: new HttpHeaders({ 
+              'Access-Control-Allow-Origin':'*'
+            })
+          };
+        return this.http.get<Station[]>(`${environment.baseUrl}${environment.getAllStations}`);  
+>>>>>>> bde7297a913a35dc7c0c53f2411782293de7ce33
     }
 //    ----------------------------------         POLLUANT  ------------------------------------------------------------
    getPolluantsByStation(idStation : number): Observable<RelevePolluant[]> {
         return this.http.get<RelevePolluant[]>(`${environment.baseUrl}${environment.getStation}/${idStation}`);
-    }
-
-    getCommune(nomCommune :string): Observable<Commune> {
-        return this.http.get<Commune>(`${environment.baseUrl}${environment.getCommune}/${nomCommune}`)
     }
 
     emitPolluant(releve: RelevePolluant[]) {
@@ -62,4 +76,33 @@ export class MapService {
         this.meteoSubject.next();
     }
 
+<<<<<<< HEAD
 }
+=======
+    searchCommunes(nomCommune : any): Observable<CommuneLight[]> {
+        return this.http.get<CommuneLight[]>(`${environment.baseUrl}${environment.getCommuneALike}/${nomCommune}`)
+    }
+
+    getCoordGeoCommunesByCodeInsee(codeInseeCommune: string){
+        return this.http.get<CommuneInsee>(`https://geo.api.gouv.fr/communes/${codeInseeCommune}?fields=nom,code,codesPostaux,centre,codeDepartement,codeRegion,population&format=json&geometry=centre`) 
+    }
+
+    //    ----------------------------------   SEARCH    ------------------------------------------------------------
+    changerCommuneSelected(commune : CommuneInsee){
+        //this.communeSelectedSource.next("COUCOU MAP")
+        //console.log("Hey THERE", commune)
+    }
+
+    publierSearchedCommune(commune : CommuneInsee){
+        MapService.communeSearchedSubj.next(commune);
+    }
+
+    recupererSearchedCommune(): Observable<any> {
+        return MapService.communeSearchedSubj.pipe(
+            share()
+        );
+    }
+
+
+}
+>>>>>>> bde7297a913a35dc7c0c53f2411782293de7ce33
