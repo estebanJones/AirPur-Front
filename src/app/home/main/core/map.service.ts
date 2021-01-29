@@ -1,10 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { List } from 'node_modules_/postcss/lib/list';
+import { HttpHeaders } from 'node_modules_/@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { MeteoIndicateur } from './meteoindicateur.model';
-import { Polluant } from './polluant.model';
 import { RelevePolluant } from './relevePolluant.model';
 import { Station } from './station.model';
 import { Commune } from './commune.model'
@@ -18,23 +17,20 @@ import { share } from 'rxjs/operators';
   })
   
 export class MapService {
+    
     private polluantSubject = new Subject<RelevePolluant[]>();
     private meteoSubject = new Subject<MeteoIndicateur>();
-
-    //private communeDefault : CommuneInsee = new CommuneInsee("default"); 
-    //public communeDefault : any = [];
-    //private communeSelectedSource = new BehaviorSubject<CommuneInsee>(this.communeDefault);
-    //private communeSelectedSource = new BehaviorSubject("coucou");
-    //obsCommuneSelected = this.communeSelectedSource.asObservable();
-
     static communeSearchedSubj = new Subject<CommuneInsee>();  
-    //static communeSearchedSubj = new BehaviorSubject<any>(null);
-
+  
     constructor(private http: HttpClient) {
-
     }
    
     getAllStation() : Observable<Station[]>{
+        const optionRequete = {
+            headers: new HttpHeaders({ 
+              'Access-Control-Allow-Origin':'*'
+            })
+          };
         return this.http.get<Station[]>(`${environment.baseUrl}${environment.getAllStations}`);  
     }
 //    ----------------------------------         POLLUANT  ------------------------------------------------------------

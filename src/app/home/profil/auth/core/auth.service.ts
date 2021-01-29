@@ -47,12 +47,15 @@ export class AuthService {
   verifierAuthentification(): Observable<Utilisateur> {
     // SI IL EST ANONYME
     if(this.utilisateurConnecteSub.getValue().estAnonyme()) {
+      console.log("il est anonyme")
       const utilisateur = this.getUserFromCache();
       // SI IL EST EN CACHE
         if(!!utilisateur) {
+          console.log("il est en cache")
           return of(utilisateur);
           // PAS DANS LE CACHE
         } else {
+          console.log("il n'est pas en cache")
           return this.http.get<Utilisateur>(`http://localhost:8080/me`, {withCredentials: true})
                   .pipe(
                     map(colServeur => new Utilisateur(colServeur)),
@@ -60,6 +63,7 @@ export class AuthService {
                     catchError(err => of(UTILISATEUR_ANONYME)));
         }
     } else {
+      console.log("else anonyme")
       // SI IL N EST PAS ANONYME ON RENVOIE LUTILISATEUR EN CACHE
       of(this.utilisateurConnecteSub.getValue());
     }

@@ -4,7 +4,7 @@ export class RelevePolluant {
 	public unite: string;
 	public dateDebut: Date;
     public dateFin: Date;
-    public idStation: number;
+    public stationId: number;
     public nomStation: string;
     public nomCommune: string;
     public idCommune: number;

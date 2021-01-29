@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './auth/components/auth.component';
 import { CompteComponent } from './compte/components/compte.component';
 import { InscriptionComponent } from './inscription/component/inscription.component';
-import { RelevesComponent } from './releves/components/releves.component';
+import { FavorisComponent } from './favoris/components/favoris.component';
 
 const routes : Routes = [ 
    
@@ -12,9 +12,9 @@ const routes : Routes = [
   { path: '', component: CompteComponent},
   { path: 'connexion', component: AuthComponent},
   { path: 'inscription', component: InscriptionComponent},
-  { path: 'releves', component: RelevesComponent},
-  { path: '**', redirectTo :''},
+  { path: 'favoris', component: FavorisComponent},
   { path: 'moncompte', component: CompteComponent},
+  { path: '**', redirectTo :''}
   
 ];
 

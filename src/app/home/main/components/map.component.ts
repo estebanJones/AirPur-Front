@@ -7,6 +7,7 @@ import { AuthService } from '../../profil/auth/core/auth.service';
 import { CommuneInsee } from '../core/CommuneInsee.model';
 import { MapService } from '../core/map.service';
 import { Station } from "../core/station.model";
+
 @Component({
     selector: 'app-map',
     templateUrl: './map.component.html',
@@ -22,11 +23,13 @@ export class MapComponent implements OnInit {
     myZoom : number = 8;
     markers: any[] = [];
     stations: Station[] = [];
+       markerLoaded: boolean = false;
 
     connected: boolean = false;
 
     subscription: Subscription;
     communeSelected: any;
+
 
     // ---------- CONSTRUCTEUR ----------------- //
 
@@ -57,13 +60,13 @@ export class MapComponent implements OnInit {
                             color: 'white',
                             idStation: station.id,
                             idCommune: station.communeId,
-                            nomStation: station.nom,
-                            nomCommune: station.nomCommune
+                            nomCommune: station.nomCommune      
                         },
                         title: 'Station pollution',
                         options: { animation: google.maps.Animation.BOUNCE },
                     })
                 })
+                this.markerLoaded = true;
                 console.log("Markers initilialisés");
             },
             error => console.log(error)
