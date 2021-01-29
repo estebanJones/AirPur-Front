@@ -1,18 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-<<<<<<< HEAD
-=======
 import { HttpHeaders } from 'node_modules_/@angular/common/http';
->>>>>>> bde7297a913a35dc7c0c53f2411782293de7ce33
 import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { MeteoIndicateur } from './meteoindicateur.model';
 import { RelevePolluant } from './relevePolluant.model';
 import { Station } from './station.model';
-import { Commune } from './commune.model'
 import { CommuneLight } from './communeLight.model';
 import { CommuneInsee } from './CommuneInsee.model';
-import { BehaviorSubject } from 'rxjs';
 import { share } from 'rxjs/operators';
 
 @Injectable({
@@ -29,16 +24,14 @@ export class MapService {
     }
 
     getAllStation() : Observable<Station[]>{
-<<<<<<< HEAD
-        return this.http.get<Station[]>(`${environment.baseUrl}${environment.getAllStations}`);
-=======
+
         const optionRequete = {
             headers: new HttpHeaders({ 
               'Access-Control-Allow-Origin':'*'
             })
           };
         return this.http.get<Station[]>(`${environment.baseUrl}${environment.getAllStations}`);  
->>>>>>> bde7297a913a35dc7c0c53f2411782293de7ce33
+
     }
 //    ----------------------------------         POLLUANT  ------------------------------------------------------------
    getPolluantsByStation(idStation : number): Observable<RelevePolluant[]> {
@@ -76,9 +69,6 @@ export class MapService {
         this.meteoSubject.next();
     }
 
-<<<<<<< HEAD
-}
-=======
     searchCommunes(nomCommune : any): Observable<CommuneLight[]> {
         return this.http.get<CommuneLight[]>(`${environment.baseUrl}${environment.getCommuneALike}/${nomCommune}`)
     }
@@ -105,4 +95,4 @@ export class MapService {
 
 
 }
->>>>>>> bde7297a913a35dc7c0c53f2411782293de7ce33
+

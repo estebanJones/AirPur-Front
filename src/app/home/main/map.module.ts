@@ -31,10 +31,6 @@ import {FavorisService} from "./core/favoris.service";
     providers: [
       MapService,
       FavorisService
-    ],
-    exports: [
-      MapService
-
     ]
   })
   export class MapModule { }
