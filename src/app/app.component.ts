@@ -34,7 +34,9 @@ export class AppComponent implements OnInit{
   constructor(private authServ : AuthService, private router : Router, private mapServ : MapService, private http: HttpClient) {
       this.authServ.utilisateurConnecteObs.subscribe(
           utilisateurConnected => {
+            console.log("ICIIIII ", utilisateurConnected)
               if(!utilisateurConnected.estAnonyme()) {
+                console.log("IL N EST PAS ANONYME ", utilisateurConnected)
                   this.connected = true;
               }
           },

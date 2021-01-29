@@ -23,7 +23,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDividerModule } from '@angular/material/divider';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatRadioModule} from '@angular/material/radio';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 import {
   MatSliderModule,
 } from '@angular/material/slider';
@@ -41,7 +41,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     CommonModule,
     FormsModule,
     RouterModule,
-
+    MatPaginatorModule,
     MatButtonModule,
     MatToolbarModule,
     MatSelectModule,
@@ -97,7 +97,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatTableModule,
     MatExpansionModule,
     MatDialogModule,
-    MatRadioModule
+    MatRadioModule,
+    MatPaginatorModule
   ]
 })
 export class SharedModule {}

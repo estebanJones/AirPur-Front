@@ -1,4 +1,4 @@
-export class Favoris {
+export class FavorisCreation {
     public communeId: number;
 	public meteo: boolean;
 	public air: boolean;
