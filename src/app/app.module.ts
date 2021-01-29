@@ -19,6 +19,10 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
+import { MapService } from './home/main/core/map.service';
+
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 
 
 //import { ConditionsGenComponent } from './home/legal/conditions-gen/conditions-gen.component';
@@ -47,11 +51,13 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     SharedModule,
     GoogleMapsModule,
     LegalModule,
-    FormsModule
+    FormsModule,
+    MatAutocompleteModule,
   ],
   providers: [
     AuthService,
-    MenuService
+    MenuService,
+    MapService
   ],
   bootstrap: [AppComponent]
 })
