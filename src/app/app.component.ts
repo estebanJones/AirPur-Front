@@ -7,7 +7,7 @@ import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
-import { debounceTime, tap, switchMap, finalize, filter } from 'rxjs/operators';
+import { debounceTime, tap, switchMap, finalize, filter, share } from 'rxjs/operators';
 
 import { HttpClient } from '@angular/common/http';
 import { CommuneInsee } from './home/main/core/CommuneInsee.model';
@@ -29,6 +29,8 @@ export class AppComponent implements OnInit{
   isLoading = false;
   errorMsg: string;
   communeSelected : CommuneInsee;
+
+  loginUserConnected = localStorage.getItem("utilisateur")["nom"];
 
 
   constructor(private authServ : AuthService, private router : Router, private mapServ : MapService, private http: HttpClient) {
@@ -113,7 +115,9 @@ export class AppComponent implements OnInit{
   this.mapServ.getCoordGeoCommunesByCodeInsee(codeInsee)
     .subscribe( communeInsee => {console.log(communeInsee.centre);
                                   this.communeSelected = communeInsee;
-                                  this.publierCommuneSelected(communeInsee);
+                                  //this.publierCommuneSelected(communeInsee);
+                                  //this.mapServ.publierSearchedCommune("Hello from DOS")
+                                  this.envoyerCommuneSearched(this.communeSelected);
       }
   );
  }
@@ -121,10 +125,15 @@ export class AppComponent implements OnInit{
  /**
   * Publie la communeInsee recu dans le service pour la transmettre à la map
   */
- publierCommuneSelected(communeSelected : CommuneInsee){
-   console.log("IN PUBLI", communeSelected )
+ //publierCommuneSelected(communeSelected : CommuneInsee){
+   //console.log("IN PUBLI", communeSelected )
    //this.mapServ.changerCommuneSelected(communeSelected);
-   this.mapServ.communeSearchedSubj.next(communeSelected);
- } /// Pourquoi cela ne recoit rien en face ? Il ne publie pas ? Ou bien Map n'écoute pas ?
+   //this.mapServ.communeSearchedSubj.next(communeSelected);
+ //} /// Pourquoi cela ne recoit rien en face ? Il ne publie pas ? Ou bien Map n'écoute pas ?
+
+ envoyerCommuneSearched(commune : CommuneInsee): void {
+   this.mapServ.publierSearchedCommune(commune);
+   console.log('Envoi Commune coté App');
+ }
   
 }

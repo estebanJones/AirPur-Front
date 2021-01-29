@@ -10,21 +10,18 @@ import { Commune } from './commune.model'
 import { CommuneLight } from './communeLight.model';
 import { CommuneInsee } from './CommuneInsee.model';
 import { BehaviorSubject } from 'rxjs';
+import { share } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
   })
   
 export class MapService {
+    
     private polluantSubject = new Subject<RelevePolluant[]>();
     private meteoSubject = new Subject<MeteoIndicateur>();
-
-    //private communeDefault : CommuneInsee = new CommuneInsee("default"); 
-    //public communeDefault : any = [];
-    //private communeSelectedSource = new BehaviorSubject<CommuneInsee>(this.communeDefault);
-    //private communeSelectedSource = new BehaviorSubject("coucou");
-    //obsCommuneSelected = this.communeSelectedSource.asObservable();
-
+    static communeSearchedSubj = new Subject<CommuneInsee>();  
+  
     constructor(private http: HttpClient) {
     }
    
@@ -84,6 +81,16 @@ export class MapService {
     changerCommuneSelected(commune : CommuneInsee){
         //this.communeSelectedSource.next("COUCOU MAP")
         //console.log("Hey THERE", commune)
+    }
+
+    publierSearchedCommune(commune : CommuneInsee){
+        MapService.communeSearchedSubj.next(commune);
+    }
+
+    recupererSearchedCommune(): Observable<any> {
+        return MapService.communeSearchedSubj.pipe(
+            share()
+        );
     }
 
 

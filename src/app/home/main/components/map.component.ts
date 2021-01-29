@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { AuthService } from '../../profil/auth/core/auth.service';
 import { CommuneInsee } from '../core/CommuneInsee.model';
@@ -19,13 +19,15 @@ export class MapComponent implements OnInit {
     @ViewChild(MapInfoWindow, { static: false }) infoWindow: MapInfoWindow;
 
     //MAP GOOGLE
-    initialCenterMap: google.maps.LatLngLiteral = { lat: 43.6600980666535, lng: 3.035913988993468 };
+    myCenter: google.maps.LatLngLiteral = { lat: 43.6600980666535, lng: 3.035913988993468 };
+    myZoom : number = 8;
     markers: any[] = [];
     stations: Station[] = [];
        markerLoaded: boolean = false;
 
     connected: boolean = false;
 
+    subscription: Subscription;
     communeSelected: any;
 
 
@@ -70,9 +72,16 @@ export class MapComponent implements OnInit {
             error => console.log(error)
         );
 
-       this.mapService.communeSearchedSubj.subscribe((res : any) =>
-            console.log("Incomming data from OBS", res)
-       )
+        this.subscription = this.mapService.recupererSearchedCommune().subscribe(data => {
+            console.log("Reception Commubne coté MAP")
+            this.communeSelected = data;
+            this.centrerCamOnSearch();
+            this.myZoom = 11; 
+        });
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
     }
 
     // ---------- METHODES  ----------------- // 
@@ -137,15 +146,10 @@ export class MapComponent implements OnInit {
         return JSON.stringify(commune);
     }
 
-    /**
-   * Publie la communeInsee recu dans le service pour la transmettre à la map
-   */
-    publierCommuneSelected(communeSelected: CommuneInsee) {
-        this.mapService.changerCommuneSelected(communeSelected)
-    }
-
     centrerCamOnSearch() {
-        this.initialCenterMap.lat = this.communeSelected.centre.getLatLong()[0]; // Latitude
-        this.initialCenterMap.lng = this.communeSelected.centre.getLatLong()[1];
+        this.myCenter = {
+            lat:  this.communeSelected.centre.coordinates[1],
+            lng: this.communeSelected.centre.coordinates[0]
+          } 
     }
 }
