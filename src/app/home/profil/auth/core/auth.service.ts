@@ -86,6 +86,7 @@ export class AuthService {
         tap(u => {
           this.persistUser(u);
           this.utilisateurConnecteSub.next(u);
+          console.log("coucou", u);
         })
         
       );
