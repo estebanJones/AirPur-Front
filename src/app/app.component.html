@@ -60,9 +60,9 @@
     <mat-form-field id="lfCityForm">
       <input matInput placeholder="Chercher Commune" aria-label="State" [matAutocomplete]="auto" [formControl]="searchedCommune">
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-        <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
+        <mat-option *ngIf="isLoading" class="is-loading">Chargement ...</mat-option>
         <ng-container *ngIf="!isLoading">
-          <mat-option *ngFor="let commune of filteredCommunes" [value]="commune.nomCommune">
+          <mat-option *ngFor="let commune of filteredCommunes" [value]="commune">
             <span><b>{{commune.nomCommune}}</b> ({{commune.codeInseeCommune.substring(0,2)}})</span>
           </mat-option>
         </ng-container>
