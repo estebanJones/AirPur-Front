@@ -21,6 +21,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { MapService } from './home/main/core/map.service';
 
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
+
 
 //import { ConditionsGenComponent } from './home/legal/conditions-gen/conditions-gen.component';
 //import { ConfidentialiteComponent } from './home/legal/confidentialite/confidentialite.component';
@@ -48,13 +51,15 @@ import { MapService } from './home/main/core/map.service';
     SharedModule,
     GoogleMapsModule,
     LegalModule,
-    FormsModule
+    FormsModule,
+    MatAutocompleteModule,
   ],
   providers: [
     AuthService,
     MenuService,
     MapService
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

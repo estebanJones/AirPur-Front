@@ -8,10 +8,11 @@ import { ListeRelevesComponent } from "./components/listeReleve/listeReleve.comp
 import { MapComponent } from './components/map.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 
-import { MapService } from "./core/map.service";
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from 'node_modules/@angular/router';
 
+import { MapService } from "./core/map.service";
+import {FavorisService} from "./core/favoris.service";
 @NgModule({
     declarations: [
       ListeRelevesComponent,
@@ -28,7 +29,8 @@ import { RouterModule } from 'node_modules/@angular/router';
       RouterModule
     ],
     providers: [
-      MapService
+      MapService,
+      FavorisService
     ]
   })
   export class MapModule { }

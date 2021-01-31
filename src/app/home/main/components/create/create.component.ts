@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Utilisateur } from 'src/app/home/profil/auth/core/auth.domain';
-import { Favoris } from '../../core/favoris.model';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { FavorisCreation } from '../../core/favorisCreation.model';
+import { FavorisService } from '../../core/favoris.service';
 import { MapService } from '../../core/map.service';
 @Component({
     selector: 'app-auth',
@@ -9,20 +9,14 @@ import { MapService } from '../../core/map.service';
     styleUrls: ['./create.component.scss']
   })
   export class CreateComponent implements OnInit {
-    options: FormGroup;
-    hideRequiredControl = new FormControl(false);
-    floatLabelControl = new FormControl('auto');
-    favoris: Favoris = new Favoris();
+    formulaireFavoris: FormGroup;
+    favoris: FavorisCreation = new FavorisCreation();
 
-    // DATEPICKER
-    range = new FormGroup({
-      start: new FormControl(),
-      end: new FormControl()
-    });
-    constructor(fb: FormBuilder, private mapService: MapService) {
-      this.options = fb.group({
-        hideRequired: this.hideRequiredControl,
-        floatLabel: this.floatLabelControl,
+    constructor(fb: FormBuilder, private mapService: MapService, private favorisService : FavorisService) {
+      this.formulaireFavoris = fb.group({
+        indicateur: [], 
+        dateDebut: [],
+        dateFin: []
       });
     }
 
@@ -31,8 +25,32 @@ import { MapService } from '../../core/map.service';
     }
 
     validFavoris() {
-      // const utilisateurId = JSON.parse( localStorage.getItem('utilisateur')).id;
-      console.log("commune ", localStorage.getItem("commune"));
-      console.log("formulaire favoris ", this.favoris)
+      let favoris : FavorisCreation = new FavorisCreation();
+      this.convertPropertiesToBoolean(favoris);
+      this.feedFavoris(favoris);
+      this.favorisService.creerFavoris(favoris).subscribe(
+        success => console.log("success ", success),
+        error => console.log("error ", error)
+      );
+    }
+
+    convertPropertiesToBoolean(favoris : FavorisCreation) {
+      if(this.formulaireFavoris.get("indicateur").value === "air") {
+        favoris.air = true;
+        favoris.meteo = false;
+      } else {
+        favoris.air = false;
+        favoris.meteo = true;
+      }
+      return favoris;
+    }
+
+    feedFavoris(favoris : FavorisCreation) {
+      favoris.choixDateDebut= this.formulaireFavoris.get("dateDebut").value;
+      favoris.choixDateFin= this.formulaireFavoris.get("dateFin").value;
+      favoris.communeId= JSON.parse( localStorage.getItem('commune')).idCommune;
+      favoris.utilisateurId= JSON.parse( localStorage.getItem('utilisateur')).id;
+
+      return favoris;
     }
   }

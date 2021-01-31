@@ -7,6 +7,7 @@ import { ConditionsGenComponent } from './home/legal/conditions-gen/conditions-g
 import { ConfidentialiteComponent } from './home/legal/confidentialite/confidentialite.component';
 import { CookiesComponent } from './home/legal/cookies/cookies.component';
 import { AuthComponent } from './home/profil/auth/components/auth.component';
+import { ForumComponent } from './home/forum/components/forum.component';
 
 
 
@@ -16,20 +17,24 @@ const routes: Routes = [
     path: 'map',
     loadChildren: () => import('./home/main/map.module').then(res => res.MapModule)
   },
-  
+
   {
     path: 'profil',
     loadChildren: () => import('./home/profil/profile.module').then(res => res.ProfileModule)
   },
 
-  { path: 'legal', 
+  { path: 'legal',
     loadChildren: () => import('./home/legal/legal.module').then(res=> res.LegalModule)
   },
+  {
+    path: 'forum',
+    loadChildren: () => import('./home/forum/forum.module').then(res => res.ForumModule)
+  },
 
-  { path: 'notifications', component: NotificationComponent },
+  { path: 'notifications', component: NotificationComponent},
   { path: '**', redirectTo: 'map' },
   { path: '', redirectTo: 'map', pathMatch: 'full'},
-    
+
   //{ path: 'conditionsGen', component: ConditionsGenComponent},
   //{ path: 'confidentialites', component: ConfidentialiteComponent},
   //{ path: 'aPropos', component: AProposComponent},

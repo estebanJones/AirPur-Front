@@ -1,0 +1,22 @@
+.full-width {
+    width: 100%;
+}
+
+.form-container {
+    margin-top: 30px;
+}
+
+.form-container .mat-button-base {
+    margin: 5px;
+}
+
+.btn-container {
+    position: relative;
+    height: 40px;
+}
+
+.btn-container .add-btn {
+    position: absolute;
+    right: 0px;
+    top: 10px;
+}
