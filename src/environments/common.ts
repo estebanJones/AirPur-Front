@@ -5,8 +5,12 @@
 export const config = {
     getAllStations : 'station/all',
     getStation : 'station',
+
     getMeteo : 'commune/meteo',
     createFavoris: 'favoris/create',
     getReleveFavoris: 'favoris/releves/liste',     // ATTEND UN IDUTILISATEUR
-    createNotification: 'notification/send'
+    createNotification: 'notification/send',
+    getCommuneALike : 'commune/like',
+  
+
   };

@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'legal', 
     loadChildren: () => import('./home/legal/legal.module').then(res=> res.LegalModule)
   },
-  
+
   { path: 'notifications', component: NotificationComponent },
   { path: '**', redirectTo: 'map' },
   { path: '', redirectTo: 'map', pathMatch: 'full'},
