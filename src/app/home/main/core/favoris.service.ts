@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from "src/environments/environment.prod";
 
 import { FavorisCreation } from "./favorisCreation.model";
-import { HttpHeaders } from "node_modules_/@angular/common/http";
+import { HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 
 
