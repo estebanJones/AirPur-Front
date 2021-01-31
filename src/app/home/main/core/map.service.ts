@@ -20,11 +20,6 @@ export class MapService {
     }
     
     getAllStation() : Observable<Station[]>{
-        const optionRequete = {
-            headers: new HttpHeaders({ 
-              'Access-Control-Allow-Origin':'*'
-            })
-          };
         return this.http.get<Station[]>(`${environment.baseUrl}${environment.getAllStations}`);  
     }
 //    ----------------------------------         POLLUANT  ------------------------------------------------------------

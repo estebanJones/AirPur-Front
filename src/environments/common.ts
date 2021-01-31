@@ -7,5 +7,6 @@ export const config = {
     getStation : 'station',
     getMeteo : 'commune/meteo',
     createFavoris: 'favoris/create',
-    getReleveFavoris: 'favoris/releves/liste'     // ATTEND UN IDUTILISATEUR
+    getReleveFavoris: 'favoris/releves/liste',     // ATTEND UN IDUTILISATEUR
+    createNotification: 'notification/send'
   };

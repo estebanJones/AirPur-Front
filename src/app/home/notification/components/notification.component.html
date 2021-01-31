@@ -1,1 +1,17 @@
-<h1>La liste de Notification</h1>
+<!-- DIV QUI LISTE LES NOTIFS SI ADMIN LISTE + BOUTON CREER NOTIF -->
+<!-- SI UTILISATEUR LISTE DE NOTIFS SANS BOUTON CREA -->
+<p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Legacy form field</mat-label>
+      <input [formControl]="formulaireNotification.controls.departement" matInput placeholder="Nom du département">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Textarea</mat-label>
+        <textarea matInput [formControl]="formulaireNotification.controls.message"></textarea>
+      </mat-form-field>
+      <button mat-raised-button color="warn" type="submit" (click)="validNotification()">
+        Valider
+      </button>
+  </p>
