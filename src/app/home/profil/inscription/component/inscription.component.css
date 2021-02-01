@@ -1,4 +1,9 @@
 
+#container{
+	padding-bottom: 15%;
+	padding-top: 1em;
+}
+
 .form-control {
 	height: 40px;
 	box-shadow: none;
@@ -84,5 +89,6 @@
 } 
 
 form{
-	padding: 2rem;
+	padding: 1em;
 }
+
