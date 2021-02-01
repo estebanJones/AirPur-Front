@@ -33,16 +33,16 @@
           </table>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="warn" (click)="openHistorique()">Voir l'historique des informations</button>
+          <button mat-stroked-button color="warn" (click)="openHistorique()">Voir l'historique des informations</button>
           
-            <button *ngIf="connected" mat-raised-button color="warn" (click)="openFavoris()">Ajouter un favoris</button>
+            <button *ngIf="connected" mat-stroked-button color="warn" (click)="openFavoris()">Ajouter un favoris</button>
         </mat-card-actions>
       </mat-card>
 
 
     </mat-tab>
-    <mat-tab label="Météo"> 
-      <ng-container *ngIf="relevesMeteo != null">
+    <mat-tab [disabled]="noDataMeteo"  label="Météo"> 
+      <ng-container *ngIf="relevesMeteo  != null">
 
         <mat-card class="example-card" style="height: 100%">
           <mat-card-header>
@@ -73,8 +73,8 @@
             </table>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-raised-button color="warn" (click)="openHistorique()">Voir l'historique des informations</button>
-            <button mat-raised-button color="warn" (click)="openFavoris()">Ajouter un favoris</button>
+            <button mat-stroked-button color="warn" (click)="openHistorique()">Voir l'historique des informations</button>
+            <button mat-stroked-button color="warn" (click)="openFavoris()">Ajouter un favoris</button>
           </mat-card-actions>
         </mat-card>
       </ng-container>

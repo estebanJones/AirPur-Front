@@ -5,7 +5,7 @@ import { MapService } from './home/main/core/map.service';
 
 import {FormControl} from '@angular/forms';
 
-import { debounceTime, tap, switchMap, finalize, filter, share } from 'rxjs/operators';
+import { debounceTime, tap, switchMap, finalize, filter, share, delay } from 'rxjs/operators';
 
 import { HttpClient } from '@angular/common/http';
 import { CommuneInsee } from './home/main/core/CommuneInsee.model';
@@ -64,6 +64,8 @@ export class AppComponent implements OnInit{
         //console.log(typeof val);
         if ( typeof val == "object" ){
           console.log("L'user a fait son choix !", val);
+          this.router.navigate(["/map"]);
+          delay(500); //Permet de laisser la map charger avant de lancer le déplacement vers la ville selected
           this.chercherInfoGeoCommuneChoisie(val["codeInseeCommune"]);
         }
       }),
@@ -116,21 +118,11 @@ export class AppComponent implements OnInit{
   this.mapServ.getCoordGeoCommunesByCodeInsee(codeInsee)
     .subscribe( communeInsee => {console.log(communeInsee.centre);
                                   this.communeSelected = communeInsee;
-                                  //this.publierCommuneSelected(communeInsee);
-                                  //this.mapServ.publierSearchedCommune("Hello from DOS")
-                                  this.envoyerCommuneSearched(this.communeSelected);
+                                  this.envoyerCommuneSearched(this.communeSelected);                  
       }
   );
  }
 
- /**
-  * Publie la communeInsee recu dans le service pour la transmettre à la map
-  */
- //publierCommuneSelected(communeSelected : CommuneInsee){
-   //console.log("IN PUBLI", communeSelected )
-   //this.mapServ.changerCommuneSelected(communeSelected);
-   //this.mapServ.communeSearchedSubj.next(communeSelected);
- //} /// Pourquoi cela ne recoit rien en face ? Il ne publie pas ? Ou bien Map n'écoute pas ?
 
  envoyerCommuneSearched(commune : CommuneInsee): void {
    this.mapServ.publierSearchedCommune(commune);

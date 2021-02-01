@@ -20,6 +20,7 @@ export class ListeRelevesComponent implements OnInit {
     columnsToDisplay: string[] = this.displayedColumns.slice();
     name: string;
     connected : boolean;
+    noDataMeteo: boolean = true;
     
 
 
@@ -54,14 +55,17 @@ export class ListeRelevesComponent implements OnInit {
 
     subscribeToMeteo() {
       this.mapService.onMeteo().subscribe(
-        relevesMeteo => this.relevesMeteo = new MeteoIndicateur(relevesMeteo),
-        error => console.log("erreur ", error)
+        relevesMeteo => { this.relevesMeteo = new MeteoIndicateur(relevesMeteo);
+                          this.noDataMeteo = false;
+                      },
+        error => { console.log("erreur ", error) , this.noDataMeteo = true }
       )
     }
 
     openFavoris() {
       const dialogRef = this.dialog.open(CreateComponent);
   
+      // On créer ci-dessus une modale qu'on affiche ci dessous
       dialogRef.afterClosed().subscribe(result => {
         console.log(`Dialog result: ${result}`);
       });
