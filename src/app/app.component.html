@@ -16,7 +16,8 @@
     <a class="nav-link" href="#"> Acceuil <span class="sr-only">(current)</span></a>
 
     <mat-form-field id="lfCityForm">
-      <input matInput placeholder="Chercher Commune" aria-label="State" [matAutocomplete]="auto" [formControl]="searchedCommune">
+      <input matInput placeholder="Chercher Commune" aria-label="State" [matAutocomplete]="auto"
+        [formControl]="searchedCommune">
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
         <mat-option *ngIf="isLoading" class="is-loading">Chargement ...</mat-option>
         <ng-container *ngIf="!isLoading">
@@ -30,14 +31,14 @@
     <div id="navbarNav">
       <ul class="nav navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#" [routerLink]="['/profil/moncompte']">Mon Compte<span
+          <a class="nav-link" href="#" [routerLink]="['/profil/moncompte']"> <b>{{ userConnected["nom"] }}</b><span
               class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" [routerLink]="['/profil/favoris']" >Mes relevés</a>
+          <a class="nav-link" href="#" [routerLink]="['/profil/favoris']">Mes relevés</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" [routerLink]="['/forum/rubrique']" >Forum</a>
+		<li class="nav-item">
+          <a class="nav-link" href="#" [routerLink]="['/forum/rubrique']">Forum</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Se déconnecter<span class="sr-only">(current)</span></a>
@@ -67,7 +68,8 @@
 
 
     <mat-form-field id="lfCityForm">
-      <input matInput placeholder="Chercher Commune" aria-label="State" [matAutocomplete]="auto" [formControl]="searchedCommune">
+      <input matInput placeholder="Chercher Commune" aria-label="State" [matAutocomplete]="auto"
+        [formControl]="searchedCommune">
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
         <mat-option *ngIf="isLoading" class="is-loading">Chargement ...</mat-option>
         <ng-container *ngIf="!isLoading">
@@ -77,13 +79,6 @@
         </ng-container>
       </mat-autocomplete>
     </mat-form-field>
-    
-
-    <!-- <form class="form-inline my-2 my-lg-0" id="lfCityForm">
-      <input class="form-control mr-sm-2" type="search" placeholder="Nom de la ville" aria-label="Search" [(ngModel)]="inputSearchCommune">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="this.chercherCommune()" >Chercher</button>
-    </form> -->
-
 
     <div id="navbarNav">
       <ul class="nav navbar-nav ml-auto">
@@ -99,9 +94,11 @@
   </div>
 </nav>
 
+
 <div id="content">
   <router-outlet></router-outlet>
 </div>
+
 
 <footer class="bg-light text-center text-lg-start fixed-bottom">
   <!-- Grid container -->

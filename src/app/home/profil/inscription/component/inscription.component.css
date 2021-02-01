@@ -1,8 +1,9 @@
-body {
-	color: #fff;
-	background: #63738a;
-	font-family: 'Roboto', sans-serif;
+
+#container{
+	padding-bottom: 6%;
+	padding-top: 0.8em;
 }
+
 .form-control {
 	height: 40px;
 	box-shadow: none;
@@ -85,4 +86,9 @@ body {
 }	
 .signup-form form a:hover {
 	text-decoration: underline;
-}  
+} 
+
+form{
+	padding: 1em;
+}
+

@@ -1,52 +1,38 @@
 <div class="container-fluid">
-  <h3>Créer un relevé perso</h3>
-  <form >
+  <h3><b>Créer un relevé personalisé</b></h3>
+  <form>
     <div class="example-container">
       <!-- ENTRER LE NOM D UNE VILLE -->
-        <mat-form-field
-          appearance="fill"
-         
-        >
-          <mat-label>Nom de la ville</mat-label>
-          <input
-            matInput
-            placeholder="Ex : Montpellier"
-            class="form-control"
-          />
-        </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Nom de la ville</mat-label>
+        <input matInput placeholder="Ex : Montpellier" class="form-control" />
+      </mat-form-field>
     </div>
-
+    <br>
     <!-- CHOISIR UN INDICATEUR -->
     <div>
       <label>Indicateur:</label>
+      <br>
       <mat-radio-group [formControl]="formulaireFavoris.controls.indicateur">
-        <mat-radio-button name="meteo"   value="meteo">Meteo</mat-radio-button>
-        <mat-radio-button  value="air">Air</mat-radio-button>
+        <mat-radio-button name="meteo" value="meteo">Meteo</mat-radio-button>  
+        <mat-radio-button name="air" value="air">Air</mat-radio-button>
       </mat-radio-group>
     </div>
-
+    <br>
     <mat-form-field appearance="fill">
-      <mat-label>Enter a date range</mat-label>
-      <mat-date-range-input  [rangePicker]="picker">
+      <mat-label>Entrez la période</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
         <input matStartDate [formControl]="formulaireFavoris.controls.dateDebut" placeholder="Start date" />
-        <input matEndDate  [formControl]="formulaireFavoris.controls.dateFin" placeholder="End date" />
+        <input matEndDate [formControl]="formulaireFavoris.controls.dateFin" placeholder="End date" />
       </mat-date-range-input>
-      <mat-datepicker-toggle
-        style="color: rgb(255, 136, 0)"
-        [for]="picker"
-      ></mat-datepicker-toggle>
+      <mat-datepicker-toggle style="color: rgb(255, 136, 0)" [for]="picker"></mat-datepicker-toggle>
       <mat-date-range-picker #picker></mat-date-range-picker>
-
-      <mat-error *ngIf="formulaireFavoris.controls.dateDebut.hasError('matStartDateInvalid')"
-        >Invalid start date</mat-error
-      >
-      <mat-error *ngIf="formulaireFavoris.controls.dateFin.hasError('matEndDateInvalid')"
-        >Invalid end date</mat-error
-      >
+      <mat-error *ngIf="formulaireFavoris.controls.dateDebut.hasError('matStartDateInvalid')">Invalid start date
+      </mat-error>
+      <mat-error *ngIf="formulaireFavoris.controls.dateFin.hasError('matEndDateInvalid')">Invalid end date</mat-error>
     </mat-form-field>
-
-    <button mat-raised-button color="warn" type="submit" (click)="validFavoris()">
-      Valider
-    </button>
   </form>
+  <div class="text-center">
+    <button mat-stroked-button color="warn" type="submit" (click)="validFavoris()"> Valider </button>
+  </div>
 </div>

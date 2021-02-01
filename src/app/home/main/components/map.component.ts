@@ -23,7 +23,7 @@ export class MapComponent implements OnInit {
     myZoom : number = 8;
     markers: any[] = [];
     stations: Station[] = [];
-       markerLoaded: boolean = false;
+    markerLoaded: boolean = false;
 
     connected: boolean = false;
 
@@ -62,8 +62,7 @@ export class MapComponent implements OnInit {
                             idCommune: station.communeId,
                             nomCommune: station.nomCommune      
                         },
-                        title: 'Station pollution',
-                        options: { animation: google.maps.Animation.BOUNCE },
+                        title: 'Station pollution'
                     })
                 })
                 this.markerLoaded = true;
@@ -115,7 +114,9 @@ export class MapComponent implements OnInit {
         localStorage.setItem("commune", commune);
 
         this.router.navigate(['map/listeReleve']);
+        
         //this.infoWindow.open(marker);
+      
     }
 
     getPolluantAndEmit(marker: MapMarker) {
