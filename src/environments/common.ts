@@ -8,7 +8,8 @@ export const config = {
 
     getMeteo : 'meteo',
     createFavoris: 'favoris/create',
-    getReleveFavoris: 'favoris/releves/liste' ,    // ATTEND UN IDUTILISATEUR
+    getReleveFavoris: 'favoris/releves/liste',     // ATTEND UN IDUTILISATEUR
+    createNotification: 'notification/send',
     getCommuneALike : 'commune/like',
   
 

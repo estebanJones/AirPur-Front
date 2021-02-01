@@ -13,7 +13,6 @@ import { share } from 'rxjs/operators';
 @Injectable({
     providedIn: 'root'
   })
-
 export class MapService {
     
     private polluantSubject = new Subject<RelevePolluant[]>();
@@ -24,12 +23,6 @@ export class MapService {
     }
 
     getAllStation() : Observable<Station[]>{
-
-        const optionRequete = {
-            headers: new HttpHeaders({ 
-              'Access-Control-Allow-Origin':'*'
-            })
-          };
         return this.http.get<Station[]>(`${environment.baseUrl}${environment.getAllStations}`);  
 
     }
