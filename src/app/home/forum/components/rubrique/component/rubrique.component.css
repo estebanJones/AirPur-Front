@@ -4,6 +4,7 @@
 
 .form-container {
     margin-top: 30px;
+    margin-bottom: 5px;
 }
 
 .form-container .mat-button-base {
@@ -28,3 +29,7 @@
 .rubriqueCreate{
     text-align: left;
 }
+
+/* .form-container{
+    margin-bottom: 5px;
+} */

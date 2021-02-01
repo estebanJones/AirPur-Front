@@ -20,7 +20,8 @@
 
         <!-- <button mat-stroked-button color="primary"  (click)="onUpdate(rubrique)">Modifier la rubrique </button> -->
 
-            <button mat-stroked-button color="primary" [hidden]="showAddForm" (click)="showAddForm = true">Modifier la rubrique </button>
+            <button mat-stroked-button color="primary" [hidden]="showUpdateForm" (click)="showUpdateForm = true ">Modifier la rubrique </button>
+
 
     </mat-expansion-panel>
 </mat-accordion>
@@ -60,6 +61,32 @@
 </mat-card>
 
 <!-- Formulaire de modification  -->
+<mat-card class="form-container" [hidden]="!showUpdateForm">
+        <form>
+            <mat-form-field class="full-width">
+                <mat-label>Titre de la rubrique</mat-label>
+                <input matInput placeholder="Titre de la rubrique" [formControl]="rubriqueForm.controls.title">
+                <mat-error *ngIf="rubriqueForm.controls.title.hasError('required')">Ce champ est requis</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field class="full-width">
+                <mat-label>Description de la rubrique</mat-label>
+                <input matInput placeholder="Description de la rubrique" [formControl]="rubriqueForm.controls.description">
+                <mat-error *ngIf="rubriqueForm.controls.description.hasError('required')">Ce champ est requis</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field class="full-width">
+                <mat-label>Contenu de la rubrique</mat-label>
+                <input matInput placeholder="Contenu de la rubrique" [formControl]="rubriqueForm.controls.content">
+                <mat-error *ngIf="rubriqueForm.controls.content.hasError('required')">Ce champ est requis</mat-error>
+            </mat-form-field>
+    
+            <button mat-raised-button color="primary" (click)="onUpdate()">Ajouter</button>
+            <button mat-stroked-button color="primary" (click)="showUpdateForm = false">Annuler</button>
+        </form>
+    </mat-card>
+
+
 
 
 
