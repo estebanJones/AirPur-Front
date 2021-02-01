@@ -20,8 +20,9 @@ export class FavorisComponent implements OnInit, AfterViewInit  {
     dataSource: MatTableDataSource<FavorisAffichage> = new MatTableDataSource([]);
    
     dataSource2: MatTableDataSource<MeteoIndicateur> = new MatTableDataSource([]);
-    displayedColumns: string[] = ['id', 'date', 'vitesseMoyVent', 'cumulPluie', 'temperatureSol'];
-    
+    displayedColumnsMeteo: string[] = ['id', 'date', 'vitesseMoyVent', 'cumulPluie', 'temperatureSol'];
+    displayedColumnsPolluant: string[] = ['id', 'dateDebut', 'dateFin', 'nom', 'valeur'];
+
     constructor(private favorisService: FavorisService) {
         const idUtilisateur:number = JSON.parse(localStorage.getItem("utilisateur")).id;
         console.log("idUtilisateur ", idUtilisateur);
