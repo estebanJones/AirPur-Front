@@ -1,8 +1,4 @@
-body {
-	color: #fff;
-	background: #63738a;
-	font-family: 'Roboto', sans-serif;
-}
+
 .form-control {
 	height: 40px;
 	box-shadow: none;
@@ -85,4 +81,8 @@ body {
 }	
 .signup-form form a:hover {
 	text-decoration: underline;
-}  
+} 
+
+form{
+	padding: 2rem;
+}

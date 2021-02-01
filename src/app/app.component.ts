@@ -4,13 +4,13 @@ import { AuthService } from './home/profil/auth/core/auth.service';
 import { MapService } from './home/main/core/map.service';
 
 import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
 
 import { debounceTime, tap, switchMap, finalize, filter, share } from 'rxjs/operators';
 
 import { HttpClient } from '@angular/common/http';
 import { CommuneInsee } from './home/main/core/CommuneInsee.model';
+
+import { Utilisateur } from './home/profil/auth/core/auth.domain';
 
 
 @Component({
@@ -30,7 +30,7 @@ export class AppComponent implements OnInit{
   errorMsg: string;
   communeSelected : CommuneInsee;
 
-  loginUserConnected = localStorage.getItem("utilisateur")["nom"];
+  userConnected: any
 
 
   constructor(private authServ : AuthService, private router : Router, private mapServ : MapService, private http: HttpClient) {
@@ -40,6 +40,7 @@ export class AppComponent implements OnInit{
               if(!utilisateurConnected.estAnonyme()) {
                 console.log("IL N EST PAS ANONYME ", utilisateurConnected)
                   this.connected = true;
+                  this.userConnected = JSON.parse(localStorage.getItem("utilisateur")) as Utilisateur;
               }
           },
           utilisateurNoConnected => {
