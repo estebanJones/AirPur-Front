@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 import { CommuneInsee } from './home/main/core/CommuneInsee.model';
 
 import { Utilisateur } from './home/profil/auth/core/auth.domain';
+import { NotificationService } from './home/notification/core/notification.service';
 
 
 @Component({
@@ -30,10 +31,10 @@ export class AppComponent implements OnInit{
   errorMsg: string;
   communeSelected : CommuneInsee;
 
-  userConnected: any
+  userConnected: any;
 
 
-  constructor(private authServ : AuthService, private router : Router, private mapServ : MapService, private http: HttpClient) {
+  constructor(private authServ : AuthService, private router : Router, private mapServ : MapService, private http: HttpClient, private notificationService: NotificationService) {
       this.authServ.utilisateurConnecteObs.subscribe(
           utilisateurConnected => {
             console.log("ICIIIII ", utilisateurConnected)
@@ -129,4 +130,8 @@ export class AppComponent implements OnInit{
    console.log('Envoi Commune coté App');
  }
   
+
+ openNotification() {
+   this.notificationService.openHistorique()
+ }
 }

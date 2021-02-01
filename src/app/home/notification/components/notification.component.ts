@@ -1,5 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Departement } from '../../main/core/departement.model';
+import { DepartementListe } from '../core/departementsListe.model';
+import { NotificationService } from '../core/notification.service';
 
 @Component({
     selector: 'app-notification',
@@ -7,21 +10,27 @@ import { FormBuilder, FormGroup } from '@angular/forms';
     styleUrls: ['./notification.component.css']
   })
 export class NotificationComponent implements OnInit{
+    departements: DepartementListe[] = [];
     formulaireNotification: FormGroup;
-    constructor(fb: FormBuilder) {
+    selectedValue = null;
+    constructor(fb: FormBuilder, private notificationService: NotificationService) {
         this.formulaireNotification = fb.group({
             message: [], 
             departement: []
           });
     }
     ngOnInit(): void {
-     
+      this.notificationService.getDepartements().subscribe(
+        listeDepartements => {
+          console.log("DEP" ,listeDepartements)
+          this.departements = listeDepartements},
+        error => console.log(error)
+      )
     }
 
     validNotification() {
       const departement = this.formulaireNotification.get("departement").value;
       const message = this.formulaireNotification.get("message").value;
-      console.log("departement ", departement);  
-      console.log("message ", message);
+      console.log("yooo ", departement)
     }
 }
