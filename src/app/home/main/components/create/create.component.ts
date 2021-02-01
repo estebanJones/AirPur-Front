@@ -16,7 +16,7 @@ import { MapService } from '../../core/map.service';
       this.formulaireFavoris = fb.group({
         indicateur: [], 
         dateDebut: [],
-        dateFin: []
+        departement: []
       });
     }
 

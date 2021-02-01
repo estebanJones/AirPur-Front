@@ -1,4 +1,4 @@
-import { NotificationComponent } from './home/notification/components/notification.componenet';
+import { NotificationComponent } from './home/notification/components/notification.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 

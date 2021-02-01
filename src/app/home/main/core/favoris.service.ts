@@ -32,6 +32,6 @@ export class FavorisService {
               choixDateDebut: favoris.choixDateDebut,
               choixDateFin: favoris.choixDateFin,
               utilisateurId: favoris.utilisateurId
-            })
+            }, httpOptions)
     }
 }

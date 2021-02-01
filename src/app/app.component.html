@@ -31,6 +31,9 @@
     <div id="navbarNav">
       <ul class="nav navbar-nav ml-auto">
         <li class="nav-item">
+          <a class="nav-link"> <mat-icon matBadge="15" matBadgeColor="warn" (click)="openNotification()">notifications</mat-icon></a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="#" [routerLink]="['/profil/moncompte']"> <b>{{ userConnected["nom"] }}</b><span
               class="sr-only">(current)</span></a>
         </li>

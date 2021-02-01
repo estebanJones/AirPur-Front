@@ -1,21 +1,30 @@
 <!-- Details message -->
 <h1>La liste de message</h1>
+
 <!-- Pour chaque message j'affiche son contenu -->
 <mat-accordion class="full-width">
     <mat-expansion-panel *ngFor="let message of messages">
         <mat-expansion-panel-header>
             <mat-panel-title>
+                {{message.postedOn}} <br /> Créée par : {{ userPrenom }}
             </mat-panel-title>
             <mat-panel-description>
-                {{message.postedOn}} <br /> Créée par : XXXXXX - Le {{message.content}}
+                <!-- {{message.postedOn}} <br /> Créée par : XXXXXX - Le {{message.content}} -->
+                {{message.content}}
             </mat-panel-description>
         </mat-expansion-panel-header>
         <!-- <p>{{rubrique.description}}</p> -->
         <!-- <button mat-stroked-button color="primary" (click)="onSelect(rubrique)">Afficher les messages</button> -->
         <button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon">
-                <mat-icon>favorite</mat-icon>
-              </button>
-            
+            <mat-icon>favorite</mat-icon>
+        </button>
+        <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon"
+            (click)="onDelete(message)">
+            <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-mini-fab color="accent" class="likeNumber" aria-label="Example icon button with a plus one icon">
+            <mat-icon>plus_one</mat-icon>
+        </button>
     </mat-expansion-panel>
 </mat-accordion>
 
@@ -33,16 +42,16 @@
     <form>
         <mat-form-field class="full-width">
             <mat-label>Contenu de du message</mat-label>
-            <input matInput placeholder="Contenu du message" 
-            [formControl]="messageForm.controls.content">
+            <input matInput placeholder="Contenu du message" [formControl]="messageForm.controls.content">
             <mat-error *ngIf="messageForm.controls.content.hasError('required')">Ce champ est requis</mat-error>
         </mat-form-field>
 
-        <input type="datetime-local" class="form-control" placeholder="date"
+        <!-- <input type="datetime-local" class="form-control" placeholder="date"
             [ngClass]="{'is-invalid' : messageForm.controls.postedOn.hasError('required')}"
-            [formControl]="messageForm.controls.postedOn">
+            [formControl]="messageForm.controls.postedOn"> -->
 
-        <button class="btn btn-primary" (click)="sendMessage()">Envoyer</button>
+        <button mat-raised-button color="primary" (click)="sendMessage()">Envoyer</button>
+        <button mat-stroked-button color="primary" (click)="showAddForm = false">Annuler</button>
     </form>
 </mat-card>
 

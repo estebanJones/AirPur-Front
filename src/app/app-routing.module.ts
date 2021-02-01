@@ -1,4 +1,4 @@
-import { NotificationComponent } from './home/notification/components/notification.componenet';
+import { NotificationComponent } from './home/notification/components/notification.component';
 import { NgModule } from '@angular/core';
 
 import { Routes, RouterModule, PreloadAllModules, NoPreloading } from '@angular/router';

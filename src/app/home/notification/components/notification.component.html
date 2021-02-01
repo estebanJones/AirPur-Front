@@ -1,1 +1,26 @@
-<h1>La liste de Notification</h1>
+<!-- DIV QUI LISTE LES NOTIFS SI ADMIN LISTE + BOUTON CREER NOTIF -->
+<!-- SI UTILISATEUR LISTE DE NOTIFS SANS BOUTON CREA -->
+
+<ng-container *ngIf="departements.length != 0">
+  <select [formControl]="formulaireNotification.controls.departement">
+    <option [ngValue]="null" disabled>Choisir un departement</option>
+    <option *ngFor="let d of departements" [ngValue]="d">
+      {{ d.codeDepartement }}
+    </option>
+  </select>
+</ng-container>
+<mat-form-field appearance="fill">
+  <mat-label>Textarea</mat-label>
+  <textarea
+    matInput
+    [formControl]="formulaireNotification.controls.message"
+  ></textarea>
+</mat-form-field>
+<button
+  mat-raised-button
+  color="warn"
+  type="submit"
+  (click)="validNotification()"
+>
+  Valider
+</button>
