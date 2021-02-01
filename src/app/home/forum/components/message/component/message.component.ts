@@ -5,7 +5,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 //import { Router, ActivatedRoute } from '@angular/router';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 //A changer aprés
-import { Utilisateur } from '/Users/moussa/AirPur-Front/src/app/home/profil/auth/core/auth.domain';
+//import { Utilisateur } from '/Users/moussa/AirPur-Front/src/app/home/profil/auth/core/auth.domain';
 @Component({
     selector: 'app-message',
     templateUrl: './message.component.html',
@@ -20,7 +20,7 @@ export class MessageComponent implements OnInit {
     // A modifier avec le getPirncipal
     userPrenom : string = JSON.parse(localStorage.getItem("utilisateur"))["prenom"];
     // Achanger aprés 
-    utilisateur: Utilisateur = new Utilisateur({});
+    //utilisateur: Utilisateur = new Utilisateur({});
     //rubriqueId: number;
     constructor(private messageService: MessageService,
         private formBuilder: FormBuilder,
