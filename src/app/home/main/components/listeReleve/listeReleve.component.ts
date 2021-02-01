@@ -6,6 +6,7 @@ import { RelevePolluant } from '../../core/relevePolluant.model';
 import {MatDialog} from '@angular/material/dialog';
 import {CreateComponent} from '../create/create.component';
 import { HistoriqueComponent } from '../historique/historique.component';
+import { AuthService } from 'src/app/home/profil/auth/core/auth.service';
 
 @Component({
     selector: 'app-auth',
@@ -18,13 +19,30 @@ export class ListeRelevesComponent implements OnInit {
     displayedColumns: string[] = ['nom', 'valeur', 'dateDebut', 'dateFin'];
     columnsToDisplay: string[] = this.displayedColumns.slice();
     name: string;
-    constructor(private mapService: MapService, public dialog: MatDialog) {
+    connected : boolean;
+    
+
+
+    constructor(private mapService: MapService, public dialog: MatDialog, public authServ: AuthService) {
         
     }
 
     ngOnInit() {
       this.subscribeToPolluant();
       this.subscribeToMeteo();
+
+      this.authServ.utilisateurConnecteObs.subscribe(
+        utilisateurConnected => {
+          console.log("ICIIIII ", utilisateurConnected)
+            if(!utilisateurConnected.estAnonyme()) {
+              console.log("IL N EST PAS ANONYME ", utilisateurConnected)
+                this.connected = true;
+            }
+        },
+        utilisateurNoConnected => {
+            console.log(utilisateurNoConnected);
+        }
+    )
     }
 
     subscribeToPolluant() {
