@@ -1,1 +1,90 @@
-YOOO LES DETAILS
+<div class="container row" >
+
+    <div class="span6" id="form">
+        <div class="container-fluid">
+            <h3><b>Consulter l'historique des polluants</b></h3>
+            <form>
+                <div class="example-container">
+                    <!-- ENTRER LE NOM D UNE VILLE -->
+                    <mat-form-field appearance="fill">
+                        <mat-label>Nom de la ville</mat-label>
+                        <input matInput placeholder="Ex : Montpellier" class="form-control" value="{{nomCommuneSelected}}" />
+                    </mat-form-field>
+                </div>
+                <br>
+                <!-- CHOISIR UN INDICATEUR -->
+                <div>
+                    <label>Indicateur:</label>
+                    <br>
+                    <mat-radio-group [formControl]="formulaireHistorique.controls.indicateur">
+                        <mat-radio-button name="meteo" value="meteo">Meteo</mat-radio-button>
+                        <mat-radio-button name="air" value="air">Air</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <br>
+                <mat-form-field appearance="fill">
+                    <mat-label>Entrez la période</mat-label>
+                    <mat-date-range-input [rangePicker]="picker">
+                        <input matStartDate [formControl]="formulaireHistorique.controls.dateDebut"
+                            placeholder="Date début" />
+                        <input matEndDate [formControl]="formulaireHistorique.controls.dateFin" placeholder="Date fin" />
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle style="color: rgb(255, 136, 0)" [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+                    <mat-error *ngIf="formulaireHistorique.controls.dateDebut.hasError('matStartDateInvalid')">Invalid
+                        start date
+                    </mat-error>
+                    <mat-error *ngIf="formulaireHistorique.controls.dateFin.hasError('matEndDateInvalid')">Invalid end date
+                    </mat-error>
+                </mat-form-field>
+            </form>
+            <div class="text-center">
+                <button mat-stroked-button color="warn" type="submit" (click)="subscribeToHistoriquePolluant()" > Valider </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="span6"  *ngIf="infosFromBack">
+        <mat-card class="example-card" style="height: 100%">
+            <mat-card-header>
+                <mat-card-title>Station: {{ relevesPolluants[0].nomStation }}</mat-card-title>
+                <mat-card-subtitle>Commune: {{ relevesPolluants[0].nomCommune }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Valeur</th>
+                            <th scope="col">Date début</th>
+                            <th scope="col">Date fin</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let polluant of relevesPolluants; index as i">
+                            <tr>
+                                <th scope="row">{{ i + 1 }}</th>
+                                <td>{{ polluant.nom }}</td>
+                                <td>{{ polluant.valeur }}</td>
+                                <td>{{ polluant.dateDebut | date:'d MMM YYYY' }} à {{ polluant.dateDebut | date:'hh:mm'
+                                    }}</td>
+                                <td>{{ polluant.dateFin | date:'d MMM YYYY' }} à {{ polluant.dateFin | date:'hh:mm' }}
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-stroked-button color="warn" (click)="openHistorique()">Voir l'historique des
+                    informations</button>
+
+                <button *ngIf="connected" mat-stroked-button color="warn" (click)="openHistorique()">Ajouter un
+                    Historique</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+-->
+
+</div>
