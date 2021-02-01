@@ -1,0 +1,18 @@
+<select [formControl]="formulaireNotification.controls.departement">
+    <option [ngValue]="null" disabled>Choisir un departement</option>
+    <option *ngFor="let d of departements" [ngValue]="d">
+      {{ d.codeDepartement }}
+    </option>
+  </select>
+  <mat-form-field appearance="fill">
+    <mat-label>Textarea</mat-label>
+    <textarea matInput [formControl]="formulaireNotification.controls.message"></textarea>
+  </mat-form-field>
+  <button
+  mat-raised-button
+  color="warn"
+  type="submit"
+  (click)="validNotification()"
+  >
+  Valider
+</button>

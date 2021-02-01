@@ -31,7 +31,7 @@ const routes: Routes = [
     loadChildren: () => import('./home/forum/forum.module').then(res => res.ForumModule)
   },
 
-  { path: 'notifications', component: NotificationComponent},
+  { path: 'notifications', loadChildren: () => import('./home/notification/notification.module').then(res => res.NotificationModule)},
   { path: '**', redirectTo: 'map' },
   { path: '', redirectTo: 'map', pathMatch: 'full'},
 

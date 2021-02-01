@@ -11,6 +11,7 @@ export const config = {
     getReleveFavoris: 'favoris/releves/liste',     // ATTEND UN IDUTILISATEUR
     createNotification: 'notification/send',
     getCommuneALike : 'commune/like',
-    getAllDepartement : 'departement/all'
+    getAllDepartement : 'departement/all',
+    getNotificationsByUser : 'notification/liste'
 
   };

@@ -1,8 +1,10 @@
 import { Component, OnInit} from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Departement } from '../../main/core/departement.model';
-import { DepartementListe } from '../core/departementsListe.model';
-import { NotificationService } from '../core/notification.service';
+import { FormGroup } from '@angular/forms';
+import { Utilisateur } from '../../profil/auth/core/auth.domain';
+import { DepartementListe } from '../core/models/departementsListe.model';
+import { NotificationListe } from '../core/models/NotificationListe.model';
+import { NotificationService } from '../core/services/notification.service';
+
 
 @Component({
     selector: 'app-notification',
@@ -10,27 +12,26 @@ import { NotificationService } from '../core/notification.service';
     styleUrls: ['./notification.component.css']
   })
 export class NotificationComponent implements OnInit{
-    departements: DepartementListe[] = [];
+    notifications: NotificationListe[] = [];
     formulaireNotification: FormGroup;
     selectedValue = null;
-    constructor(fb: FormBuilder, private notificationService: NotificationService) {
-        this.formulaireNotification = fb.group({
-            message: [], 
-            departement: []
-          });
+    utilisateur: Utilisateur = new Utilisateur();
+    constructor(private notificationService: NotificationService) {
+        
     }
     ngOnInit(): void {
-      this.notificationService.getDepartements().subscribe(
-        listeDepartements => {
-          console.log("DEP" ,listeDepartements)
-          this.departements = listeDepartements},
+      this.utilisateur = JSON.parse(localStorage.getItem("utilisateur")) as Utilisateur;
+      this.notificationService.getNotificationsByUser(this.utilisateur.id).subscribe(
+        listeNotification => {
+          this.notifications = listeNotification;
+          console.log(this.notifications);
+        },
         error => console.log(error)
       )
+      
     }
 
-    validNotification() {
-      const departement = this.formulaireNotification.get("departement").value;
-      const message = this.formulaireNotification.get("message").value;
-      console.log("yooo ", departement)
+    getNotificationsByUser() {
+      
     }
 }

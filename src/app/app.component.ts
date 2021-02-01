@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 import { CommuneInsee } from './home/main/core/CommuneInsee.model';
 
 import { Utilisateur } from './home/profil/auth/core/auth.domain';
-import { NotificationService } from './home/notification/core/notification.service';
+import { NotificationService } from './home/notification/core/services/notification.service';
 
 
 @Component({

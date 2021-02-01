@@ -1,26 +1,16 @@
 <!-- DIV QUI LISTE LES NOTIFS SI ADMIN LISTE + BOUTON CREER NOTIF -->
 <!-- SI UTILISATEUR LISTE DE NOTIFS SANS BOUTON CREA -->
+<app-create-notif></app-create-notif>
+<ng-container *ngIf="notifications.length != 0">
+    <div class="contrainer">
+        <div class="container" *ngFor="let notif of notifications">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>{{notif.message}}</mat-card-title>
+                <mat-card-subtitle>Envoyé par: {{notif.userNameEmetteur}} le {{ notif.dateCreation | date:'d/MM/yyyy' }} à {{ notif.dateCreation | date:'hh:mm' }}</mat-card-subtitle>
+              </mat-card-header>
+        </div>
 
-<ng-container *ngIf="departements.length != 0">
-  <select [formControl]="formulaireNotification.controls.departement">
-    <option [ngValue]="null" disabled>Choisir un departement</option>
-    <option *ngFor="let d of departements" [ngValue]="d">
-      {{ d.codeDepartement }}
-    </option>
-  </select>
+
+    </div>
 </ng-container>
-<mat-form-field appearance="fill">
-  <mat-label>Textarea</mat-label>
-  <textarea
-    matInput
-    [formControl]="formulaireNotification.controls.message"
-  ></textarea>
-</mat-form-field>
-<button
-  mat-raised-button
-  color="warn"
-  type="submit"
-  (click)="validNotification()"
->
-  Valider
-</button>

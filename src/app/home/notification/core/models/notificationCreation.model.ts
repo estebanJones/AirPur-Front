@@ -1,8 +1,6 @@
 export class NotificationCreation {
     message: string;
-    dateCreation: Date;
-    departementId: number;
-    utilisateurId: number;
+    codeDepartement: string;
 
     constructor(params?: any) {
         Object.assign(this, params);

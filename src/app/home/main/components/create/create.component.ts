@@ -4,7 +4,7 @@ import { FavorisCreation } from '../../core/favorisCreation.model';
 import { FavorisService } from '../../core/favoris.service';
 import { MapService } from '../../core/map.service';
 @Component({
-    selector: 'app-auth',
+    selector: 'app-create-favoris',
     templateUrl: './create.component.html',
     styleUrls: ['./create.component.scss']
   })
@@ -16,6 +16,7 @@ import { MapService } from '../../core/map.service';
       this.formulaireFavoris = fb.group({
         indicateur: [], 
         dateDebut: [],
+        dateFin: [],
         departement: []
       });
     }

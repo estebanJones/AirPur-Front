@@ -9,7 +9,7 @@ export class Utilisateur {
     motDePasse: string;
     roles: string[];
   
-    constructor(params: any) {
+    constructor(params?: any) {
       Object.assign(this, params);
     }
   

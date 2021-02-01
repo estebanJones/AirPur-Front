@@ -38,7 +38,6 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
    // ConfidentialiteComponent,
    // AProposComponent,
    // CookiesComponents
-    NotificationComponent
   ],
   imports: [
     BrowserModule,

@@ -3,10 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
-import { NotificationComponent } from '../components/notification.component';
-import { NotificationCreation } from './notificationCreation.model';
-import { Departement } from '../../main/core/departement.model';
-import { DepartementListe } from './departementsListe.model';
+import { NotificationComponent } from '../../components/notification.component';
+import { NotificationCreation } from '../models/notificationCreation.model';
+import { DepartementListe } from '../models/departementsListe.model';
+import { NotificationListe } from '../models/NotificationListe.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,9 +26,7 @@ export class NotificationService {
       return this.http.post(`${environment.baseUrl}${environment.createNotification}`,
       { 
         message: notification.message,
-        dateCreation: notification.dateCreation,
-        departementId: notification.departementId,
-        utilisateurId: notification.utilisateurId
+        codeDepartement: notification.codeDepartement
       }, httpOptions)
   }
 
@@ -44,5 +42,9 @@ export class NotificationService {
 
   getDepartements() {
     return this.http.get<DepartementListe[]>(`${environment.baseUrl}${environment.getAllDepartement}`);
+  }
+
+  getNotificationsByUser(utilisateurId: number) : Observable<NotificationListe[]> {
+    return this.http.get<NotificationListe[]>(`${environment.baseUrl}${environment.getNotificationsByUser}/${utilisateurId}`);
   }
 }
