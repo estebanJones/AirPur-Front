@@ -1,4 +1,4 @@
-import {Message} from "../../message/core/message.models"
+import { Message } from "../../message/core/message.models"
 export interface Rubrique {
     id: number;
     content: string;
@@ -7,5 +7,5 @@ export interface Rubrique {
     description: string;
     utilisateurId: number;
     messages: Message[];
-    
+
 }

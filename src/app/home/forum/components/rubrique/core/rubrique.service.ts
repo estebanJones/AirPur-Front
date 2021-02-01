@@ -13,9 +13,10 @@ import {Message} from '../../message/core/message.models'
 export class RubriqueService {
 
   constructor(private httpClient: HttpClient) { }
+  /**
+   * Récupéré la liste des rubriques
+   */
 
-  /** Récupération de rubriques - rubrique */
-  // Methode pour avoir la liste des rubriques
   getRubriques(): Observable<Rubrique[]> {
     //Verifier si on a des données en cache
     const cachedData = this.getRubriquesFromCache();
@@ -28,7 +29,11 @@ export class RubriqueService {
     }
 
   }
-  // Methode pour avoir la liste de message (posts)
+
+  /**
+   * Methode pour avoir la liste de message (posts) contenue dans une rubrique
+   */
+
   getUnRubrique(): Observable<Rubrique[]> {
     // To do aprés
     const id : number = 9;
@@ -44,23 +49,34 @@ export class RubriqueService {
 
   }
  
+  /**
+   * Methode pour recupérer les données de rubriques en cache
+   */
 
-
-  // Methode pour recupérer les données en cache
   private getRubriquesFromCache(): Rubrique[] {
     const result = localStorage.getItem('APP-FORUM');
     return !!result ? <Rubrique[]>JSON.parse(result) : null
   }
-
-  // Methode pour recupérer les données en cache
+  
+/**
+ * Methode pour recupérer les données d'une rubrique en cache
+ */
+  
   private getUnRubriqueFromCache(): Rubrique[] {
     const result = localStorage.getItem('APP-FORUM');
     return !!result ? <Rubrique[]>JSON.parse(result) : null
   }
 
-  /** Ajout et Modification de rubriques - rubrique */
-
-  //Methode pour Ajouter un rubrique
+ 
+/**
+ * Ajouter une rubrique
+ * @param _content 
+ * @param _postedOn 
+ * @param _title 
+ * @param _description 
+ * @param _utilisateurId 
+ */
+ 
   postRubriques(_content: string, _postedOn: Date, _title: string, _description: string, _utilisateurId : number): Observable<any> {
     return this.httpClient.post(`${environment.baseUrl}accueil/rubriques`,
       {
@@ -74,6 +90,52 @@ export class RubriqueService {
       localStorage.setItem('APP-USER', JSON.stringify(resultat))
     }));
   }
+
+
+/**
+ * Methode pour supprimer une rubrique
+ * @param id 
+ */
+
+deleteRubrique( id : number) : Observable <any> {
+  return this.httpClient.delete<Rubrique> (`${environment.baseUrl}accueil/rubriques/${id}`);
+}
+
+/**
+ * Mettre à jour une rubrique
+ * @param id 
+ * @param _content 
+ * @param _postedOn 
+ * @param _title 
+ * @param _description 
+ * @param _utilisateurId 
+ */
+
+putRubrique(id: number, _content: string, _postedOn: Date, _title: string, _description: string, _utilisateurId : number): Observable<any> {
+  return this.httpClient.put(`${environment.baseUrl}accueil/rubriques/${id}`,
+      {
+        content: _content,
+        postedOn: _postedOn,
+        title: _title,
+        description: _description,
+        utilisateurId : _utilisateurId
+      }
+  ).pipe(tap(resultat => {
+      localStorage.setItem('APP-USER-PUT-RUBRIQUES', JSON.stringify(resultat))
+  }));
+}
+
+
+// /**
+//  * Mettre à jour une rubrique
+//  * @param id 
+//  * @param rubrique 
+//  */
+
+//   putRubrique(id : number , rubrique : Rubrique): Observable<Rubrique>{
+//     return this.httpClient.put<Rubrique>(`${environment.baseUrl}accueil/rubriques/${id}`, rubrique );
+
+//   }
 
 
 }
