@@ -72,8 +72,9 @@ export class ListeRelevesComponent implements OnInit {
     }
 
     openHistorique() {
-      const dialogRef = this.dialog.open(HistoriqueComponent);
-  
+      const dialogRef = this.dialog.open(HistoriqueComponent ,
+                                          { width: '70%'});
+          
       dialogRef.afterClosed().subscribe(result => {
         console.log(`Dialog result: ${result}`);
       });

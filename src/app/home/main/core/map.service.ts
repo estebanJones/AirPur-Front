@@ -9,6 +9,7 @@ import { Station } from './station.model';
 import { CommuneLight } from './communeLight.model';
 import { CommuneInsee } from './CommuneInsee.model';
 import { share } from 'rxjs/operators';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
@@ -33,15 +34,24 @@ export class MapService {
         return this.http.get<Station[]>(`${environment.baseUrl}${environment.getAllStations}`);  
 
     }
-//    ----------------------------------         POLLUANT  ------------------------------------------------------------
+//    ----------------------------------  POLLUANT  ------------------------------------------------------------
    getPolluantsByStation(idStation : number): Observable<RelevePolluant[]> {
         return this.http.get<RelevePolluant[]>(`${environment.baseUrl}${environment.getStation}/${idStation}`);
+    }
+
+    getHistoriquePolluantStation(idStation : number, dateDebut : Date, dateFin : Date) : Observable<RelevePolluant[]> {
+        const params = new HttpParams()
+                            .set("idStation" , `${idStation}`)
+                            .set("dateDebut", `${dateDebut}`)
+                            .set("dateFin", `${dateFin}` ) 
+
+        return this.http.post<RelevePolluant[]>(`${environment.baseUrl}${environment.getHistoriqueStation}`,
+                                               {params} );
     }
 
     emitPolluant(releve: RelevePolluant[]) {
         this.polluantSubject.next(releve);
     }
-
 
     clearPolluant() {
         this.polluantSubject.next();
@@ -50,6 +60,8 @@ export class MapService {
     onPolluant() : Observable<RelevePolluant[]>{
         return this.polluantSubject.asObservable();
     }
+
+
 
     //    ----------------------------------         METEO     ------------------------------------------------------------
 
