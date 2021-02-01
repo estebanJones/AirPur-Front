@@ -17,6 +17,7 @@ export class MessageComponent implements OnInit {
     selectedMessage: Message;
     messageForm: FormGroup;
     showAddForm = false;
+    showUpdateForm = false;
     // A modifier avec le getPirncipal
     userPrenom : string = JSON.parse(localStorage.getItem("utilisateur"))["prenom"];
     // Achanger aprés 
@@ -27,10 +28,23 @@ export class MessageComponent implements OnInit {
         private router: Router, private route: ActivatedRoute) { }
 
 
-    ngOnInit(): void {
 
-        /* Afficher les messages d'une rubrique donnée */
+        // private listeRecharger(){
+        //     this.rubriqueService.getRubriques()
+    
+        //     .subscribe(
+        //         result => {
+        //             this.rubriques = result;
+        //         },
+        //         err => {
+        //             alert('Une erreur est surveneu');
+        //         }
+        //     )
+        // }
+
+         /* Afficher les messages d'une rubrique donnée */
         // pour activer un route c'est snapshot
+        private listeRecharger(){
         const rubrique = this.route.snapshot.params['rubriqueId'];
         console.log(rubrique);
         this.messageService.getMessageByRubrique(rubrique)
@@ -42,6 +56,21 @@ export class MessageComponent implements OnInit {
                     alert('Une erreur est survenue dans message');
                 }
             )
+        }
+    ngOnInit(): void {
+        // Appel de la fonction listeRecharger
+        this.listeRecharger();
+        // const rubrique = this.route.snapshot.params['rubriqueId'];
+        // console.log(rubrique);
+        // this.messageService.getMessageByRubrique(rubrique)
+        //     .subscribe(
+        //         result => {
+        //             this.messages = result;
+        //         },
+        //         err => {
+        //             alert('Une erreur est survenue dans message');
+        //         }
+        //     )
 
         /** Le formulaire d'envoi de message faite par FormBuilder qui instencie l'objet et j'utilise un FormGroup ici*/
         this.messageForm = this.formBuilder.group({
@@ -74,7 +103,11 @@ export class MessageComponent implements OnInit {
      */
     onDelete(message: Message): void {
         this.selectedMessage = message;
-        this.messageService.deleteMessage(message.id).subscribe();
+        this.messageService.deleteMessage(message.id).subscribe(
+            result => {
+                this.listeRecharger();
+            }
+        );
     }
 
     /**
@@ -98,6 +131,7 @@ export class MessageComponent implements OnInit {
             // le formulaire est envoyé mais j'ai un retour erreur de this.messageService.getMessageByRubrique(rubrique) .subscribe()
             // const rubrique2 = this.route.snapshot.paramMap.get('rubriqueId');
             // const rubriqueId: number = +rubrique2;
+            // Récupérer le paramétre passer
             const rubriqueId = this.route.snapshot.params['rubriqueId'];
             //  const rubriqueId : number = 1;
             //const utilisateurId: number = 1;
@@ -107,7 +141,14 @@ export class MessageComponent implements OnInit {
             this.messageService.postMessage(content, postedOn, rubriqueId, utilisateurId)
                 .subscribe(result => {
                     console.log(result);
-                    this.router.navigate([`forum/message/${rubriqueId}`]);
+                    //Passer le paramétre rubriqueId
+                    //this.router.navigate([`forum/message/${rubriqueId}`]);
+                    // Recharger la page
+                    this.listeRecharger();
+                    // Effacer le formulaire
+                    this.messageForm.reset();
+                    // Ne pas afficher les erreurs
+                    this.messageForm.markAsPristine();
                 }, err => {
                     console.log(err);
                     alert('Message non envoyé')
@@ -116,4 +157,36 @@ export class MessageComponent implements OnInit {
 
     }
 
+
+    /**
+     * Méthode pour modifier message
+     */
+    updateMessage(){
+        const utilisateurId : number = JSON.parse(localStorage.getItem("utilisateur"))["id"];
+        const content = this.messageForm.get('content').value;
+        //const postedOn = this.messageForm.get('postedOn').value;
+        const postedOn = new Date();
+        //const rubriqueId = this.route.snapshot.params['rubriqueId'];
+        const rubriqueId : number = 13;
+        //const id = this.selectedMessage.id;
+        const id : number = 43;
+        console.log("le message modifié est")
+        console.log(id,content, postedOn, rubriqueId, utilisateurId);
+        this.messageService.putMessage(id, content, postedOn, rubriqueId, utilisateurId)
+            .subscribe(result => {
+                console.log(result);
+                //Passer le paramétre rubriqueId
+               // this.router.navigate([`forum/message/${rubriqueId}`]);
+                // Recharger la page
+                this.listeRecharger();
+                // Effacer le formulaire
+                this.messageForm.reset();
+                // Ne pas afficher les erreurs
+                this.messageForm.markAsPristine();
+            }, err => {
+                console.log(err);
+                alert('Message non envoyé')
+            })
+
+    }
 }

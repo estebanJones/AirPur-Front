@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { RubriqueService } from '../core/rubrique.service';
 import { Rubrique } from '../core/rubrique.models';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Message } from '../../message/core/message.models';
 import { ThisReceiver } from '@angular/compiler';
 @Component({
@@ -16,7 +16,9 @@ export class RubriqueComponent implements OnInit {
     selectedRubrique: Rubrique;
     selectedMessage: Message;
     rubriqueForm: FormGroup;
+    rubriqueUpdateForm : FormGroup;
     showAddForm = false;
+    showUpdateForm = false;
     // To Do : à récupérer aprés par le principal
     userPrenom : string = JSON.parse(localStorage.getItem("utilisateur"))["prenom"];
 
@@ -24,7 +26,7 @@ export class RubriqueComponent implements OnInit {
     //rubriqueName: string = 'Rubrique1';
     //@Input() rubriqueName: string;
     constructor(private rubriqueService: RubriqueService, private formBuilder: FormBuilder,
-        private router: Router) { }
+        private router: Router, private route: ActivatedRoute) { }
 
 
     private listeRecharger(){
@@ -39,17 +41,26 @@ export class RubriqueComponent implements OnInit {
             }
         )
     }
+
     ngOnInit(): void {
         // La liste des rubriqes
         
     this.listeRecharger();
 
+    // Formulaire d'envoi
         this.rubriqueForm = this.formBuilder.group({
             content: ['', Validators.required],
             title: ['', Validators.required],
             description: ['', Validators.required]
 
         });
+
+    // Formulaire de update
+        this.rubriqueUpdateForm = this.formBuilder.group({
+            content: ['', Validators.required],
+            title: ['', Validators.required],
+            description: ['', Validators.required]
+        })
 
         // this.rubriqueService.getMessageByRubrique(this.rubriqueID)
         // .subscribe(
@@ -77,6 +88,7 @@ export class RubriqueComponent implements OnInit {
      * Méthode pour supprimer une rubrique (bouton)
      * @param rubriqe 
      */
+    
     onDelete(rubriqe: Rubrique): void {
         this.selectedRubrique = rubriqe;
         this.rubriqueService.deleteRubrique(rubriqe.id).subscribe(
@@ -87,9 +99,7 @@ export class RubriqueComponent implements OnInit {
 
     }
 
-    onUpdate (rubriqe : Rubrique) : void{
-        
-    }
+   
     // onSelect2(message: Message): void {
     //     this.selectedMessage = message;
     //     this.router.navigate(['/message',message.rubriqueId])
@@ -117,8 +127,11 @@ export class RubriqueComponent implements OnInit {
             this.rubriqueService.postRubriques(content, postedOn, title, description, utilisateurId)
                 .subscribe(result => {
                     console.log(result);
+                    // Recharger la page
                     this.listeRecharger();
+                    // Effacer le formulaire
                     this.rubriqueForm.reset();
+                    // Ne pas afficher les erreurs
                     this.rubriqueForm.markAsPristine();
                     //this.router.navigate(['forum/rubrique']);
                 }, err => {
@@ -128,6 +141,39 @@ export class RubriqueComponent implements OnInit {
         }
     }
 
+    /**
+     * Update Rubrique
+     */
+
+    onUpdate () {
+        if (this.rubriqueForm.valid) {
+            const content = this.rubriqueForm.get('content').value;
+            const postedOn = new Date();
+            const title = this.rubriqueForm.get('title').value;
+            const description = this.rubriqueForm.get('description').value;
+            //const utilisateurId = this.rubriqueForm.get('utilisateurId').value;
+            // A modifier récupérer l'ID de l'utilisateur connecté
+            const utilisateurId : number = JSON.parse(localStorage.getItem("utilisateur"))["id"];
+            //const utilisateurId: number = 1;
+            const id = this.route.snapshot.params['rubriqueId'];
+            console.log(content, postedOn, title, description);
+            this.rubriqueService.putRubrique(id, content, postedOn, title, description, utilisateurId)
+                .subscribe(result => {
+                    console.log(result);
+                    // Recharger la page
+                    this.listeRecharger();
+                    // Effacer le formulaire
+                    this.rubriqueForm.reset();
+                    // Ne pas afficher les erreurs
+                    this.rubriqueForm.markAsPristine();
+                    //this.router.navigate(['forum/rubrique']);
+                }, err => {
+                    console.log(err);
+                    alert('Rurbique non envoyé')
+                })
+        }
+        
+    }
 
     // Supprimer une rubrique
 

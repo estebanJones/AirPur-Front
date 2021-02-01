@@ -25,6 +25,7 @@
         <button mat-mini-fab color="accent" class="likeNumber" aria-label="Example icon button with a plus one icon">
             <mat-icon>plus_one</mat-icon>
         </button>
+        <button mat-stroked-button color="primary" [hidden]="showUpdateForm" (click)="showUpdateForm = true ">Modifier la rubrique </button>
     </mat-expansion-panel>
 </mat-accordion>
 
@@ -50,10 +51,27 @@
             [ngClass]="{'is-invalid' : messageForm.controls.postedOn.hasError('required')}"
             [formControl]="messageForm.controls.postedOn"> -->
 
-        <button mat-raised-button color="primary" (click)="sendMessage()">Envoyer</button>
+        <button mat-raised-button color="primary" (click)="sendMessage()" >Envoyer</button>
         <button mat-stroked-button color="primary" (click)="showAddForm = false">Annuler</button>
     </form>
 </mat-card>
+
+<!-- Modifier un message  -->
+
+<mat-card class="form-container" [hidden]="!showUpdateForm">
+        <form>
+            <mat-form-field class="full-width">
+                <mat-label>Contenu de du message</mat-label>
+                <input matInput placeholder="Contenu du message" [formControl]="messageForm.controls.content">
+                <mat-error *ngIf="messageForm.controls.content.hasError('required')">Ce champ est requis</mat-error>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" (click)="updateMessage()" >Modifier</button>
+            <button mat-stroked-button color="primary" (click)="showUpdateForm = false">Annuler</button>
+        </form>
+    </mat-card>
+
+
 
 <!-- Ancienne version -->
 

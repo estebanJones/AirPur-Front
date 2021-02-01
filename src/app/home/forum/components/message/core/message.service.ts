@@ -95,9 +95,9 @@ export class MessageService {
      * @param _utilisateurId 
      */
 
-    putMessgae(id: number, _content: string, _postedOn: Date, _rubriqueId: number, _utilisateurId: Number): Observable<any> {
+    putMessage(id: number, _content: string, _postedOn: Date, _rubriqueId: number, _utilisateurId: Number): Observable<any> {
         return this.httpClient.put(`${environment.baseUrl}accueil/messages/${id}`,
-            {
+            { 
                 content: _content,
                 postedOn: _postedOn,
                 rubriqueId: _rubriqueId,
